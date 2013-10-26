@@ -1,18 +1,18 @@
 -- phpMyAdmin SQL Dump
--- version 4.1-dev
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Okt 26, 2013 kell 12:11 PM
--- Server version: 5.5.32
--- PHP Version: 5.4.19
+-- Loomise aeg: Okt 26, 2013 kell 07:10 PM
+-- Serveri versioon: 5.5.32
+-- PHP versioon: 5.4.19
 
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `blogvol2`
+-- Andmebaas: `blogvol2`
 --
 CREATE DATABASE IF NOT EXISTS `blogvol2` DEFAULT CHARACTER SET utf8 COLLATE utf8_estonian_ci;
 USE `blogvol2`;
