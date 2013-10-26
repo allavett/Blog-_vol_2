@@ -1,26 +1,24 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 4.1.0-beta1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Loomise aeg: Okt 26, 2013 kell 07:10 PM
--- Serveri versioon: 5.5.32
--- PHP versioon: 5.4.19
+-- Host: localhost
+-- Generation Time: Oct 26, 2013 at 07:53 PM
+-- Server version: 5.5.32
+-- PHP Version: 5.4.19
 
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Andmebaas: `blogvol2`
+-- Database: `blogvol2`
 --
-CREATE DATABASE IF NOT EXISTS `blogvol2` DEFAULT CHARACTER SET utf8 COLLATE utf8_estonian_ci;
-USE `blogvol2`;
 
 -- --------------------------------------------------------
 
 --
--- Tabeli struktuur tabelile `post`
+-- Table structure for table `post`
 --
 
 DROP TABLE IF EXISTS `post`;
@@ -35,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `post` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=7 ;
 
 --
--- Andmete tõmmistamine tabelile `post`
+-- Dumping data for table `post`
 --
 
 INSERT INTO `post` (`post_id`, `post_subject`, `post_text`, `post_created`, `user_id`) VALUES
@@ -49,7 +47,7 @@ INSERT INTO `post` (`post_id`, `post_subject`, `post_text`, `post_created`, `use
 -- --------------------------------------------------------
 
 --
--- Tabeli struktuur tabelile `user`
+-- Table structure for table `user`
 --
 
 DROP TABLE IF EXISTS `user`;
@@ -62,18 +60,18 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Andmete tõmmistamine tabelile `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `deleted`) VALUES
 (1, 'demo', 'demo', 0);
 
 --
--- Tõmmistatud tabelite piirangud
+-- Constraints for dumped tables
 --
 
 --
--- Piirangud tabelile `post`
+-- Constraints for table `post`
 --
 ALTER TABLE `post`
   ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
