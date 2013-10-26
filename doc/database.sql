@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Okt 26, 2013 kell 10:37 AM
+-- Generation Time: Okt 26, 2013 kell 12:11 PM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -14,6 +14,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `blogvol2`
 --
+CREATE DATABASE IF NOT EXISTS `blogvol2` DEFAULT CHARACTER SET utf8 COLLATE utf8_estonian_ci;
+USE `blogvol2`;
 
 -- --------------------------------------------------------
 
