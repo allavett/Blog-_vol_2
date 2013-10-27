@@ -1,19 +1,21 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.0-alpha2
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Okt 27, 2013 kell 01:13 PM
--- Server version: 5.5.32
--- PHP Version: 5.4.19
+-- Loomise aeg: Okt 27, 2013 kell 04:27 PM
+-- Serveri versioon: 5.5.32
+-- PHP versioon: 5.4.19
 
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `blogvol2`
+-- Andmebaas: `blogvol2`
 --
+CREATE DATABASE IF NOT EXISTS `blogvol2` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `blogvol2`;
 
 -- --------------------------------------------------------
 
@@ -48,6 +50,19 @@ INSERT INTO `post` (`post_id`, `post_subject`, `post_text`, `post_created`, `use
 -- --------------------------------------------------------
 
 --
+-- Tabeli struktuur tabelile `tag`
+--
+
+DROP TABLE IF EXISTS `tag`;
+CREATE TABLE IF NOT EXISTS `tag` (
+  `tag_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `tag_name` varchar(25) NOT NULL,
+  PRIMARY KEY (`tag_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Tabeli struktuur tabelile `user`
 --
 
@@ -75,5 +90,5 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `deleted`) VALUES
 -- Piirangud tabelile `post`
 --
 ALTER TABLE `post`
-  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 SET FOREIGN_KEY_CHECKS=1;
