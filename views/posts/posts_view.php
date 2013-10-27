@@ -26,7 +26,7 @@
 			-->
 			<div class="span6">
 				<p>
-					<?=str_replace("\n",'<br/>',$post['post_text']);?> <!--Postituse sisu, koodijupp "str_replace("\n",'<br/>',..)" muudab postituse reavahed HTMLile arusaadavaks-->
+					<?=str_replace("\n",'<br/>',$post['post_text']);?> <!-- "str_replace("\n",'<br/>',..)" muudab postituse reavahed HTMLile arusaadavaks-->
 				</p>
 			</div>
 		</div>
