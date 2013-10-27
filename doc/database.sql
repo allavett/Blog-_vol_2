@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.0-beta1
+-- version 4.1.0-alpha2
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Oct 26, 2013 at 07:53 PM
+-- Host: 127.0.0.1
+-- Generation Time: Okt 27, 2013 kell 01:13 PM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `post`
+-- Tabeli struktuur tabelile `post`
 --
 
 DROP TABLE IF EXISTS `post`;
@@ -30,24 +30,25 @@ CREATE TABLE IF NOT EXISTS `post` (
   `user_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`post_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=8 ;
 
 --
--- Dumping data for table `post`
+-- Andmete tõmmistamine tabelile `post`
 --
 
 INSERT INTO `post` (`post_id`, `post_subject`, `post_text`, `post_created`, `user_id`) VALUES
 (1, 'Test1', 'Postituse tekst 1', '2013-10-26 08:31:59', 1),
-(2, 'Test2', 'Postituse tekst 2', '2013-10-26 08:31:59', 1),
-(3, 'Test3', 'Postituse tekst 3', '2013-10-26 08:31:59', 1),
-(4, 'Test4', 'Postituse tekst 4', '2013-10-26 08:31:59', 1),
-(5, 'Test5', 'Postituse tekst 5', '2013-10-26 08:31:59', 1),
-(6, 'Test6', 'Postituse tekst 6', '2013-10-26 08:31:59', 1);
+(2, 'Test2', 'Postituse tekst 2.\r\nReavahetus..', '2013-10-26 08:32:59', 1),
+(3, 'Test 3', 'Postituse tekst 4', '2013-10-26 08:33:59', 1),
+(4, 'Test4', 'Postituse tekst 4', '2013-10-26 08:34:59', 1),
+(5, 'Test5', 'Postituse tekst 5', '2013-10-26 08:35:59', 1),
+(6, 'Test6', 'Postituse tekst 6', '2013-10-26 08:36:59', 1),
+(7, 'Anekdoot', 'Eesti talumees sõidab reega kodu poole. Mehel ka kaks poega kaasas. Mingil hetkel jookseb jänes üle tee.\r\nMöödub pool tundi ja esimene poeg hüüatab: «Näe, jänes!»\r\nMöödub veel pool tundi ja teine poeg nähvab: «Ei olnud jänes, sa lollpea!»\r\nMöödub järgmine pooltund ning talumees sõnab lepitavalt: «Mis te tulised eesti poisid nüüd selle tühja-tähja pärast tüli kisute.»', '2013-10-27 12:10:49', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Tabeli struktuur tabelile `user`
 --
 
 DROP TABLE IF EXISTS `user`;
@@ -60,18 +61,18 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `user`
+-- Andmete tõmmistamine tabelile `user`
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `deleted`) VALUES
 (1, 'demo', 'demo', 0);
 
 --
--- Constraints for dumped tables
+-- Tõmmistatud tabelite piirangud
 --
 
 --
--- Constraints for table `post`
+-- Piirangud tabelile `post`
 --
 ALTER TABLE `post`
   ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
