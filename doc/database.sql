@@ -3,20 +3,13 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Loomise aeg: Okt 27, 2013 kell 04:41 PM
+-- Loomise aeg: Okt 27, 2013 kell 04:50 PM
 -- Serveri versioon: 5.5.32
 -- PHP versioon: 5.4.19
 
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
---
--- Andmebaas: `blogvol2`
---
-CREATE DATABASE IF NOT EXISTS `blogvol2` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `blogvol2`;
-
 -- --------------------------------------------------------
 
 --
