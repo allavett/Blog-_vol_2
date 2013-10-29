@@ -39,16 +39,13 @@
 					| <i class="icon-comment"></i> <a href="#">3 Comments</a>
 					| <i class="icon-share"></i> <a href="#">39 Shares</a>
 					| <i class="icon-tags"></i> Tags
-						<div>
-							<?foreach ($tags as $tag):?>
-								<a href="<?=BASE_URL?>tags/view/<?=$tag['tag_id']?>"><span class="label label-info" style="background-color:#5bc0de"><?=$tag['tag_name']?></span></a>
+							<?foreach($tags as $tag):
+								foreach($tag as $tag_name):?>
+									<a href="#"><span class="label label-info"><?=$tag_name?></span></a>
+								<?endforeach?>
 							<?endforeach?>
-						</div>
 				</p>
 			</div>
 		</div>
 	</div>
 </div>
-<hr>
-
-

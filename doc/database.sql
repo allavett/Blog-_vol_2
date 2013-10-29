@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 29, 2013 at 09:32 AM
+-- Generation Time: Oct 29, 2013 at 02:24 PM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -12,7 +12,7 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `blog`
+-- Database: `blogvol2`
 --
 
 -- --------------------------------------------------------
@@ -24,26 +24,18 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE IF NOT EXISTS `comment` (
   `comment_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `comment_text` varchar(500) NOT NULL,
+  `comment_text` varchar(500) CHARACTER SET latin1 NOT NULL,
   `comment_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `comment_author` varchar(25) NOT NULL,
+  `comment_author` varchar(25) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`comment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `comment`
 --
 
 INSERT INTO `comment` (`comment_id`, `comment_text`, `comment_created`, `comment_author`) VALUES
-(1, 'Huvitav kommentaar.', '2013-10-28 10:57:03', 'Test1'),
-(2, 'testikas\r\n', '2013-10-28 11:29:04', 'test'),
-(3, 'Ilus ilm', '2013-10-28 11:50:58', 'test'),
-(4, 'Igav uudis', '2013-10-28 13:25:45', 'Igav'),
-(5, 'Igav', '2013-10-28 17:32:04', 'jupp'),
-(6, 'Kapsapea', '2013-10-28 17:51:12', 'Kapsas'),
-(7, 'Roosa padi', '2013-10-28 17:52:45', 'Roosa'),
-(8, 'Jalgpall', '2013-10-28 17:56:17', 'Anonüümne'),
-(9, 'Test', '2013-10-29 08:29:46', 'Anonüümne');
+(2, 'Huvitav', '2013-10-29 10:09:37', 'demo');
 
 -- --------------------------------------------------------
 
@@ -54,23 +46,26 @@ INSERT INTO `comment` (`comment_id`, `comment_text`, `comment_created`, `comment
 DROP TABLE IF EXISTS `post`;
 CREATE TABLE IF NOT EXISTS `post` (
   `post_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `post_subject` varchar(255) NOT NULL,
-  `post_text` text NOT NULL,
+  `post_subject` varchar(255) COLLATE utf8_estonian_ci NOT NULL,
+  `post_text` text COLLATE utf8_estonian_ci NOT NULL,
   `post_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`post_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `post`
 --
 
 INSERT INTO `post` (`post_id`, `post_subject`, `post_text`, `post_created`, `user_id`) VALUES
-(2, 'Esimese postituse pealkiri', 'Esimene postitus', '2013-10-03 15:01:03', 1),
-(3, 'Teise postituse pealkiri', 'Teine postitus', '2013-10-28 11:23:18', 2),
-(4, 'Swedbank: tarbijad on e-kaubanduseks valmis', 'Kuigi Eestis on hetkel veel suhtumine e-kaubandusse suhteliselt leige ja kõik kaupmehed ei võta seda ohtu või võimalust veel päris tõsiselt, siis tegelikult viitab kõik ikkagi e-kaubanduse populaarsuse kasvule ka Eesti elanikkonna hulgas, kirjutab Swedbanki kaubanduse sektorijuhi Maris Peda.\r\n\r\nKodumaise e-kaubanduse kasv jääb väliskaupmeestele veel alla', '2013-10-28 11:53:14', 1),
-(6, 'Spain summons US ambassador over claim NSA tracked 60m calls a month', 'The Spanish prime minister, Mariano Rajoy, has summoned the US ambassador to explain the latest revelations to emerge from the files leaked by Edward Snowden, which suggest the National Security Agency tracked more than 60m phone calls in Spain in the space of a month.', '2013-10-28 12:13:23', 1);
+(1, 'Test1', 'Postituse tekst 1', '2013-10-26 08:31:59', 1),
+(2, 'Test2', 'Postituse tekst 2.\r\nReavahetus..', '2013-10-26 08:32:59', 1),
+(3, 'Test 3', 'Postituse tekst 4', '2013-10-26 08:33:59', 1),
+(4, 'Test4', 'Postituse tekst 4', '2013-10-26 08:34:59', 1),
+(5, 'Test5', 'Postituse tekst 5', '2013-10-26 08:35:59', 1),
+(6, 'Test6', 'Postituse tekst 6', '2013-10-26 08:36:59', 1),
+(7, 'Anekdoot', 'Eesti talumees sõidab reega kodu poole. Mehel ka kaks poega kaasas. Mingil hetkel jookseb jänes üle tee.\r\nMöödub pool tundi ja esimene poeg hüüatab: «Näe, jänes!»\r\nMöödub veel pool tundi ja teine poeg nähvab: «Ei olnud jänes, sa lollpea!»\r\nMöödub järgmine pooltund ning talumees sõnab lepitavalt: «Mis te tulised eesti poisid nüüd selle tühja-tähja pärast tüli kisute.»', '2013-10-27 12:10:49', 1);
 
 -- --------------------------------------------------------
 
@@ -84,22 +79,7 @@ CREATE TABLE IF NOT EXISTS `post_comments` (
   `comment_id` int(11) unsigned NOT NULL,
   PRIMARY KEY (`post_id`,`comment_id`),
   KEY `comment_id` (`comment_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `post_comments`
---
-
-INSERT INTO `post_comments` (`post_id`, `comment_id`) VALUES
-(8, 1),
-(3, 2),
-(2, 3),
-(6, 4),
-(4, 5),
-(2, 6),
-(2, 7),
-(2, 8),
-(6, 9);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci;
 
 -- --------------------------------------------------------
 
@@ -144,18 +124,17 @@ CREATE TABLE IF NOT EXISTS `tag` (
   `tag_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `tag_name` varchar(25) NOT NULL,
   PRIMARY KEY (`tag_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `tag`
 --
 
 INSERT INTO `tag` (`tag_id`, `tag_name`) VALUES
-(1, 'Tag'),
+(1, 'Taggens'),
 (2, 'Postitus'),
-(3, 'Tag2'),
-(4, 'Tekst'),
-(5, 'tekst');
+(3, 'Taggens2'),
+(4, 'Tekst');
 
 -- --------------------------------------------------------
 
@@ -170,15 +149,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(255) NOT NULL,
   `deleted` tinyint(3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `deleted`) VALUES
-(1, 'demo', 'demo', 0),
-(2, 'test', 'test', 0);
+(1, 'demo', 'demo', 0);
 
 --
 -- Constraints for dumped tables
