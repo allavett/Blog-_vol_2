@@ -5,15 +5,15 @@
 		str_replace("\n",'<br/>',substr($post['post_text'],0,150));
 		$post_length=strlen($post['post_text']);
 		if ($post_length>150){
-			echo "...";
+			echo "..";
 		};
 		?>
 	</p>
-	<div>
-		<span class="badge badge-success">Posted on <?=$post['post_created']?> by <?=$post['username']?>.</span>
-		<?foreach ($tags[$post['post_id']] as $tag):?>
-			<a href="<?=BASE_URL?>tags/view/<?=$tag['tag_id']?>"><span class="label label-info"><?=$tag['tag_name']?></span></a>
-		<?endforeach?>
-	</div>
-<?endforeach?>
+		<div>
+			<span class="badge badge-success">Posted on <?=$post['post_created']?> by <?=$post['username']?>.</span>
+			<?foreach ($tags[$post['post_id']] as $tag):?>
+				<a href="<?=BASE_URL?>tags/view/<?=$tag['tag_id']?>"><span class="label label-info"><?=$tag['tag_name']?></span></a>
+			<?endforeach?>
+		</div>
+	<?endforeach?>
 </div>
