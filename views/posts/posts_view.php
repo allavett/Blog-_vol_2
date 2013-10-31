@@ -17,9 +17,9 @@
             <button type="submit" class="btn btn-primary input-medium">Submit</button>
         </div>
         <!-- If submitting fails for some reason, notification will be shown -->
-        <? if (isset($errors)) {
+        <? if (isset($errors) && isset($this->notification)) {
             echo $this->notification; //Comment error
-        }else{
+        }elseif(isset($this->notification)){
             echo $this->notification; //Comment submitted successfully
         }?>
     </form>

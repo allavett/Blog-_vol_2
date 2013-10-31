@@ -23,7 +23,7 @@ class posts extends Controller{
             if($comment_text==NULL){
                 $this->notification = '<span class="label" style="background-color:#ff5849">Your comment is empty!</span>';
             }else{
-                $comment_author_id = $_SESSION['user_id']['user_id'];
+                $comment_author_id = $_SESSION['user_id'];
 
                 if($comment_author_id == FALSE){
                     $this->notification = '<span class="label" style="background-color:#ff5849">How the hell did you inserted comment without logging in?!</span>';
