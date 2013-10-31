@@ -1,50 +1,37 @@
-<?php
-/**
- * Created by JetBrains PhpStorm.
- * User: Allar
- * Date: 27.10.13
- * Time: 12:30
- * To change this template use File | Settings | File Templates.
- */
-?>
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet"> <!-- Lisab nunnud ikoonid-->
-<div class="row">
-	<div class="span8">
-		<div class="row">
-			<div class="span8">
-				<h4><strong><?=$post['post_subject']?></strong></h4>
-			</div>
-		</div>
-		<div class="row">
-<!--
-**See pildi osa tahab veidi läbimõtlemist**
-			<div class="span2">
-				<a href="#" class="thumbnail">
-					<img src="http://placehold.it/260x180" alt="">
-				</a>
-			</div>
-			-->
-			<div class="span6">
-				<p>
-					<?=str_replace("\n",'<br/>',$post['post_text']);?> <!-- "str_replace("\n",'<br/>',..)" muudab postituse reavahed HTMLile arusaadavaks-->
-				</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="span8">
-				<p></p>
-				<p>
-					<i class="icon-user"> </i> By <?=$post['username']?>
-					| <i class="icon-calendar"></i> <?=$post['post_created']?>
-					| <i class="icon-comment"></i> <a href="#">3 Comments</a>
-					| <i class="icon-share"></i> <a href="#">39 Shares</a>
-					| <i class="icon-tags"></i> Tags
-							<?foreach ($tags as $tag): ?>
-								<a href="<?=BASE_URL?>tags/view/<?=$tag['tag_id']?>"><span class="label label-info" style="background-color:#5bc0de"><?=$tag['tag_name']?></span></a>
-
-							<?endforeach?>
-				</p>
-			</div>
-		</div>
-	</div>
+<div class="span8">
+    <h1><?=$post['post_subject']?></h1>
+    <p><?=str_replace("\n",'<br/>',$post['post_text']);?></p>
+    <div>
+        <span class="badge badge-success">Posted on <?=$post['post_created']?> by <?=$post['username']?>.</span>
+        <?foreach ($tags as $tag):?>
+            <a href="<?=BASE_URL?>tags/view/<?=$tag['tag_id']?>"><span class="label label-info" style="background-color:#5bc0de"><?=$tag['tag_name']?></span></a>
+        <?endforeach?>
+    </div>
+    <hr>
+    <!-- Comment submit form -->
+    <form method="post">
+        <div class="controls">
+            <textarea id="message" name="comment_new" class="span6" style="width: 500px" placeholder="Your comment.." rows="5"></textarea>
+        </div>
+        <div class="controls">
+            <button type="submit" class="btn btn-primary input-medium">Submit</button>
+        </div>
+        <!-- If submitting fails for some reason, notification will be shown -->
+        <? if (isset($errors)) {
+            echo $this->notification; //Comment error
+        }else{
+            echo $this->notification; //Comment submitted successfully
+        }?>
+    </form>
+</div>
+<hr>
+<div>
+    <?foreach ($comments as $comment):?>
+        <br />
+        <span class="comment" style="background-color:#afe4ff">
+                                <?=$comment['comment_text']?>
+            <p>Comment posted on <?=$comment['comment_created']?> by <?=$comment['comment_author']?></p>
+                        </span>
+    <?endforeach?>
+</div>
 </div>
