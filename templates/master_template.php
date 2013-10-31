@@ -67,8 +67,28 @@
 			-->
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Sign out</a></li>
+				<? if ($auth->logged_in): ?>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+											data-toggle="dropdown"><?= $_SESSION['username'] ?><b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="<?= BASE_URL ?>logout">Log out</a></li>
+						</ul>
+					</li>
+				<? else: ?>
+					<form class="navbar-form navbar-right"  method="post" action="<?= BASE_URL ?>">
+						<div class="form-group">
+							<input type="text" name="username" placeholder="User" class="form-control">
+						</div>
+						<div class="form-group">
+							<input type="password" name="password" placeholder="Password" class="form-control">
+						</div>
+						<button type="submit" class="btn btn-success">Sign in</button>
+					</form>
+
+				<? endif ?>
 			</ul>
+
+
 		</div><!--/.nav-collapse -->
 	</div>
 </div>

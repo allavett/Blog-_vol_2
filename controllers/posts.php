@@ -13,8 +13,11 @@ class posts extends Controller{
         $post_id = $this->params[0];
         $this->post = get_one("SELECT * FROM post NATURAL JOIN user WHERE post_id='$post_id'");
         $this->tags=get_all("SELECT * FROM post_tags NATURAL JOIN tag WHERE post_id='$post_id'");
+        $this->comments = get_all("SELECT * FROM post_comments NATURAL JOIN comment WHERE post_id = '$post_id'");
+    }
+    function view_post(){
+        $post_id = $this->params[0];
         $this->notification = "Leave a comment.";
-
         if (isset($_POST['comment_new'])) {
             $comment_text=$_POST['comment_new'];
             if($comment_text==NULL){
@@ -41,10 +44,11 @@ class posts extends Controller{
                 }
             }
         }
-        
-        $this->comments = get_all("SELECT * FROM post_comments NATURAL JOIN comment WHERE post_id = '$post_id'");
     }
 
+	function index_post(){
+
+	}
 
 }
 

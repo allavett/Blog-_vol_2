@@ -32,9 +32,11 @@ class Auth
 		if (isset($_POST['username'])) {
 			$username = $_POST['username'];
 			$password = $_POST['password'];
-			$user_id = get_one("SELECT user_id FROM user WHERE username = '$username' AND password = '$password'");
-			if (! empty($user_id)) {
-				$_SESSION['user_id'] = $user_id;
+			$user = get_first("SELECT user_id, username FROM user WHERE username = '$username' AND password = '$password'");
+			if (! empty($user)) {
+				$this->logged_in = TRUE;
+				$_SESSION['user_id'] = $user['user_id'];
+				$_SESSION['username'] = $user['username'];
 				return true;
 			} else {
 				$errors[] = "Vale kasutajanimi või parool";

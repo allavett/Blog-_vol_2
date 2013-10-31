@@ -39,9 +39,10 @@ class Application
 
 		// Authenticate user, if controller requires it
 
-		if (!$controller->auth->logged_in && !$controller->auth->logged_in) {
+		if (isset($_POST['username']) || $controller->requires_auth && !$controller->auth->logged_in) {
 			$controller->auth->require_auth();
 		}
+
 
         // Run the action
         if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
