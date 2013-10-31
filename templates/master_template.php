@@ -13,12 +13,15 @@
 	<!-- Bootstrap core CSS -->
 	<link href="<?=ASSETS_URL?>css/bootstrap-3.0.0.min.css" rel="stylesheet">
 
+    <!-- Lisab nunnud ikoonid-->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+
 	<!-- Custom styles for this template -->
 	<style>
 		body {
 			min-height: 2000px !important;
 			padding-top: 70px;
-			background: url(<?= ASSETS_URL ?>img/bg.jpg);
+			background: url(<?= ASSETS_URL ?>'img/bg.jpg');
 		}
 	</style>
 
