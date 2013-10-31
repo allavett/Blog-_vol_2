@@ -49,4 +49,9 @@ class Auth
 		// Prevent loading the requested controller (not authenticated)
 		exit();
 	}
+
+	function redirect($page){
+		header("location: ". BASE_URL . $page);
+		exit();
+	}
 }

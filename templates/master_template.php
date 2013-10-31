@@ -82,7 +82,8 @@
 						<div class="form-group">
 							<input type="password" name="password" placeholder="Password" class="form-control">
 						</div>
-						<button type="submit" class="btn btn-success">Sign in</button>
+						<button type="submit" name="signin" class="btn btn-success">Sign in</button>
+						<button type="submit" name="register" class="btn btn-danger">Register</button>
 					</form>
 
 				<? endif ?>

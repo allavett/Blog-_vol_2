@@ -38,9 +38,10 @@ class Application
 		$controller->auth = $this->auth;
 
 		// Authenticate user, if controller requires it
-
-		if (isset($_POST['username']) || $controller->requires_auth && !$controller->auth->logged_in) {
+		if (isset($_POST['signin']) || $controller->requires_auth && !$controller->auth->logged_in) {
 			$controller->auth->require_auth();
+		}elseif(isset($_POST['register'])){
+			$this->auth->redirect("register");
 		}
 
 
