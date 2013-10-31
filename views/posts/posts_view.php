@@ -7,8 +7,10 @@
             <a href="<?=BASE_URL?>tags/view/<?=$tag['tag_id']?>"><span class="label label-info" style="background-color:#5bc0de"><?=$tag['tag_name']?></span></a>
         <?endforeach?>
     </div>
-    <hr>
+
     <!-- Comment submit form -->
+    <? if($this->auth->logged_in):?>
+    <hr>
     <form method="post">
         <div class="controls">
             <textarea id="message" name="comment_new" class="span6" style="width: 500px" placeholder="Your comment.." rows="5"></textarea>
@@ -23,6 +25,7 @@
             echo $this->notification; //Comment submitted successfully
         }?>
     </form>
+    <? endif ?>
 </div>
 <hr>
 <div>
