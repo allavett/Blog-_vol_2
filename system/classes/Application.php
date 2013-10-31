@@ -43,9 +43,22 @@ class Application
 			$controller->auth->require_auth();
 		}
 
-		// Run the action
-		$controller->{$controller->action}();
-		$controller->render($controller->template);
+        // Run the action
+        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            $action_name = $controller->action . '_ajax';
+            $controller->$action_name();
+            exit();
+        }else{
+            // Check for and process POST ( executes $action_post() )
+            if (isset($_POST) && !empty($_POST)) {
+                $action_name = $controller->action . '_post';
+                $controller->$action_name();
+            }
+
+            // Proceed with regular action processing ( executes $action() )
+            $controller->{$controller->action}();
+            $controller->render($controller->template);
+        }
 
 	}
 
