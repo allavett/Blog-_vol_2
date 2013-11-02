@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.0-beta1
+-- version 4.1.0-alpha2
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Oct 29, 2013 at 05:55 PM
+-- Host: 127.0.0.1
+-- Generation Time: Nov 02, 2013 kell 05:41 PM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comment`
+-- Tabeli struktuur tabelile `comment`
 --
 
 DROP TABLE IF EXISTS `comment`;
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `comment`
+-- Andmete tõmmistamine tabelile `comment`
 --
 
 INSERT INTO `comment` (`comment_id`, `comment_text`, `comment_created`, `comment_author`) VALUES
@@ -40,7 +40,7 @@ INSERT INTO `comment` (`comment_id`, `comment_text`, `comment_created`, `comment
 -- --------------------------------------------------------
 
 --
--- Table structure for table `post`
+-- Tabeli struktuur tabelile `post`
 --
 
 DROP TABLE IF EXISTS `post`;
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `post` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=8 ;
 
 --
--- Dumping data for table `post`
+-- Andmete tõmmistamine tabelile `post`
 --
 
 INSERT INTO `post` (`post_id`, `post_subject`, `post_text`, `post_created`, `user_id`) VALUES
@@ -70,7 +70,7 @@ INSERT INTO `post` (`post_id`, `post_subject`, `post_text`, `post_created`, `use
 -- --------------------------------------------------------
 
 --
--- Table structure for table `post_comments`
+-- Tabeli struktuur tabelile `post_comments`
 --
 
 DROP TABLE IF EXISTS `post_comments`;
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `post_comments` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `post_tags`
+-- Tabeli struktuur tabelile `post_tags`
 --
 
 DROP TABLE IF EXISTS `post_tags`;
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `post_tags` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `post_tags`
+-- Andmete tõmmistamine tabelile `post_tags`
 --
 
 INSERT INTO `post_tags` (`post_id`, `tag_id`) VALUES
@@ -116,7 +116,7 @@ INSERT INTO `post_tags` (`post_id`, `tag_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tag`
+-- Tabeli struktuur tabelile `tag`
 --
 
 DROP TABLE IF EXISTS `tag`;
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `tag` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `tag`
+-- Andmete tõmmistamine tabelile `tag`
 --
 
 INSERT INTO `tag` (`tag_id`, `tag_name`) VALUES
@@ -139,7 +139,7 @@ INSERT INTO `tag` (`tag_id`, `tag_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Tabeli struktuur tabelile `user`
 --
 
 DROP TABLE IF EXISTS `user`;
@@ -147,33 +147,36 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(25) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `deleted` tinyint(3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `user`
+-- Andmete tõmmistamine tabelile `user`
 --
 
-INSERT INTO `user` (`user_id`, `username`, `password`, `deleted`) VALUES
-(1, 'demo', 'demo', 0);
+INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `deleted`) VALUES
+(1, 'demo', 'demo', '', 0);
 
 --
--- Constraints for dumped tables
+-- Tõmmistatud tabelite piirangud
 --
 
 --
--- Constraints for table `post`
+-- Piirangud tabelile `post`
 --
 ALTER TABLE `post`
   ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
 --
--- Constraints for table `post_comments`
+-- Piirangud tabelile `post_comments`
 --
 ALTER TABLE `post_comments`
-  ADD CONSTRAINT `post_comments_ibfk_2` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`comment_id`),
-  ADD CONSTRAINT `post_comments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`);
+  ADD CONSTRAINT `post_comments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`),
+  ADD CONSTRAINT `post_comments_ibfk_2` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`comment_id`);
+SET FOREIGN_KEY_CHECKS=1;
+;
 
 --
 -- Constraints for table `post_tags`
