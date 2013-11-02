@@ -1,4 +1,4 @@
-<form class="form-horizontal" action='' method="POST">
+<form class="form-horizontal" enctype="multipart/form-data" action='' method="POST">
 	<fieldset>
 		<div id="legend">
 			<legend class="">Register</legend>
@@ -11,7 +11,6 @@
 				<p class="help-block">Username can contain any letters or numbers, without spaces</p>
 			</div>
 		</div>
-
 		<div class="control-group">
 			<!-- E-mail -->
 			<label class="control-label" for="email">E-mail</label>
@@ -20,7 +19,6 @@
 				<p class="help-block">Please provide your E-mail</p>
 			</div>
 		</div>
-
 		<div class="control-group">
 			<!-- Password-->
 			<label class="control-label" for="password">Password</label>
@@ -29,7 +27,6 @@
 				<p class="help-block">Password should be at least 4 characters</p>
 			</div>
 		</div>
-
 		<div class="control-group">
 			<!-- Password confirm-->
 			<label class="control-label"  for="password_confirm">Password (Confirm)</label>
@@ -38,13 +35,22 @@
 				<p class="help-block">Please confirm password</p>
 			</div>
 		</div>
-
+		<div class="control-group">
+<!--			Avatar-->
+			<label class="control-label" for="avatar">Avatar</label>
+			<div class="controls">
+				<input type="file" name="file" id="file"><br>
+				<p class="help-block">Avatar max dimensions are 100x100.</p>
+			</div>
+		</div>
+		<br />
 		<div class="control-group">
 			<!-- Button -->
 			<div class="controls">
 				<button class="btn btn-success">Register</button>
 			</div>
 		</div>
+		<br />
 		<? if (isset($this->notification)) {
 			echo $this->notification;}
 		?>

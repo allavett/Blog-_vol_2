@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2013 kell 05:41 PM
+-- Generation Time: Nov 02, 2013 kell 11:25 PM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -148,16 +148,17 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(25) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(50) NOT NULL,
+  `avatar` varchar(100) NOT NULL,
   `deleted` tinyint(3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
 
 --
 -- Andmete tõmmistamine tabelile `user`
 --
 
-INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `deleted`) VALUES
-(1, 'demo', 'demo', '', 0);
+INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `avatar`, `deleted`) VALUES
+(1, 'demo', 'demo', '', '', 0);
 
 --
 -- Tõmmistatud tabelite piirangud
@@ -175,13 +176,4 @@ ALTER TABLE `post`
 ALTER TABLE `post_comments`
   ADD CONSTRAINT `post_comments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`),
   ADD CONSTRAINT `post_comments_ibfk_2` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`comment_id`);
-SET FOREIGN_KEY_CHECKS=1;
-;
-
---
--- Constraints for table `post_tags`
---
-ALTER TABLE `post_tags`
-  ADD CONSTRAINT `post_tags_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`),
-  ADD CONSTRAINT `post_tags_ibfk_2` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`tag_id`);
 SET FOREIGN_KEY_CHECKS=1;

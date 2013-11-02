@@ -1,6 +1,8 @@
 RewriteEngine On
 
 RewriteRule ^(classes) - [F,L]
+RewriteRule ^(upload) - [F,L]
+RewriteRule ^(system) - [F,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
