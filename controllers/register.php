@@ -34,6 +34,9 @@ class register extends Controller {
 						if ($width > 200||$height > 100) {
 							$this->notification = '<span class="label" style="background-color:#ff5849">Image dimensions too big!</span>';
 						}else{
+							if (!is_dir('upload/')) {
+								mkdir('upload/', 0777, true);
+							}
 							$avatar=$_POST['username'].$_FILES["file"]["name"];
 							move_uploaded_file($tmp_file,"upload/".$avatar);
 							$sql_user = insert('user', array('username' => $_POST['username'], 'password' =>$_POST['password'], 'email' =>$_POST['email'],'avatar'=>$avatar));
