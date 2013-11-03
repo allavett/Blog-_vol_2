@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2013 kell 11:25 PM
+-- Generation Time: Nov 03, 2013 kell 04:53 PM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -151,14 +151,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `avatar` varchar(100) NOT NULL,
   `deleted` tinyint(3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
 -- Andmete tõmmistamine tabelile `user`
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `avatar`, `deleted`) VALUES
-(1, 'demo', 'demo', '', '', 0);
+(1, 'demo', 'demo', '', 'demodemo.png', 0);
 
 --
 -- Tõmmistatud tabelite piirangud

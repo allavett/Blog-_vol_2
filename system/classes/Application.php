@@ -69,7 +69,7 @@ class Application
 		// System paths
 		define('BASE_URL', dirname($_SERVER['SCRIPT_NAME']) . '/');
 		define('ASSETS_URL', BASE_URL . 'assets/');
-
+		define('UPLOAD_URL', BASE_URL . 'upload/');
 
 		// Load config file or bail out
 		if (file_exists('config.php')) {

@@ -14,7 +14,14 @@ class posts extends Controller{
         $this->post = get_one("SELECT * FROM post NATURAL JOIN user WHERE post_id='$post_id'");
         $this->tags=get_all("SELECT * FROM post_tags NATURAL JOIN tag WHERE post_id='$post_id'");
         $this->comments = get_all("SELECT * FROM post_comments NATURAL JOIN comment WHERE post_id = '$post_id'");
-    }
+		//Check if user has avatar
+		$target_size=50; //Define avatar size
+		if ($this->post['avatar']==NULL){
+			$this->avatar="";
+		}else{
+			$this->avatar='<img src="'.UPLOAD_URL.$this->post['avatar'].'"'.image_resize("upload/".$this->post['avatar'],$target_size).'>';
+		}
+}
     function view_post(){
         $post_id = $this->params[0];
         $this->notification = "Leave a comment.";
