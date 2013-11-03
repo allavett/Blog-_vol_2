@@ -35,6 +35,9 @@
 
 <body>
 
+
+
+<div id="base_url" style="display:none;" data-value="<?=BASE_URL?>"></div>
 <!-- Fixed navbar -->
 <div class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
@@ -48,7 +51,26 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li <?= $controller == "posts" ? 'class="active"' : ''?>><a href="<?=BASE_URL?>">Posts</a></li>
+
+                    <? if ($auth->logged_in): ?>
+                        <li  <?= $controller == "posts" ? 'class="active"' : ''?>><a href="<?=BASE_URL?>posts" >Posts</a>
+
+                        </li>
+
+                        <li class="dropdown" >
+                            <a style="padding-left: 0; padding-right: 0;" href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a onclick="Blog.addNewPosting()">Add new post</a></li>
+                            </ul>
+                        </li>
+
+
+                    <? else: ?>
+                        <li <?= $controller == "posts" ? 'class="active"' : ''?>><a href="<?=BASE_URL?>">Posts</a></li>
+                    <? endif ?>
+
+
+
 				<li <?= $controller == "tags" ? 'class="active"' : ''?>><a href="<?=BASE_URL?>tags">Tags</a></li>
 				<li <?= $controller == "users" ? 'class="active"' : ''?>><a href="<?=BASE_URL?>users">Users</a></li>
 			<!--
@@ -74,6 +96,8 @@
 							<li><a href="<?= BASE_URL ?>logout">Log out</a></li>
 						</ul>
 					</li>
+
+                    <div id="user_id" style="display:none;" data-value="<?=$_SESSION['user_id']?>"></div>
 				<? else: ?>
 					<form class="navbar-form navbar-right"  method="post" action="<?= BASE_URL ?>">
 						<div class="form-group">
@@ -101,10 +125,57 @@
 </div> <!-- /container -->
 
 
+<!-- Modal for adding new post-->
+<div class="modal fade" id="addNewPosting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Add new post</h4>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post" class="form-horizontal">
+                    <fieldset>
+                        <div class="control-group">
+                            <label class="control-label">Post title</label>
+                            <div class="controls">
+                                <input type="text" id="post_title" placeholder="Post title" class="form-control">
+                            </div>
+                        </div>
+
+
+                        <div class="control-group">
+                            <label class="control-label">Post text</label>
+                            <div class="controls">
+                                <textarea style="resize: none;" type="text" id="post_text" placeholder="Post text" class="form-control"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label">Tags</label>
+                            <div class="controls">
+                                <input type="text" id="post_tags" placeholder="Example: weather; news; beer" class="form-control">
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="savePost" class="btn btn-primary">Save post</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="<?=ASSETS_URL?>js/jquery-1.10.2.min.js"></script>
 <script src="<?=ASSETS_URL?>js/bootstrap-3.0.0.min.js"></script>
+<script src="<?=ASSETS_URL?>js/functions.js"></script>
 </body>
 </html>

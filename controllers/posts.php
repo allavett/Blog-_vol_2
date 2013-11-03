@@ -5,7 +5,8 @@ class posts extends Controller{
 	function index(){
         $this->posts = get_all("SELECT * FROM post NATURAL JOIN user ORDER BY post_created DESC");
 		$_tags=get_all("SELECT * FROM post_tags NATURAL JOIN tag");
-		foreach ($_tags as $tag){
+		$this->tags = array();
+        foreach ($_tags as $tag){
 			$this->tags[$tag['post_id']][]= array('tag_id'=>$tag['tag_id'], 'tag_name'=>$tag['tag_name']);
 		}
 	}
@@ -56,6 +57,44 @@ class posts extends Controller{
 	function index_post(){
 
 	}
+
+    function add_post_ajax(){
+        $title = $_POST["title"];
+        $text = $_POST["text"];
+
+        $tagString = $_POST["tags"];
+
+        $id = insert("post", array("post_subject" => $title, "post_text" => $text, "user_id" => $_SESSION['user_id']));
+        if($id == false){
+            exit(false);
+        }
+
+        if(strlen($tagString) > 0){
+            $tags = explode(";", $tagString);
+
+            $existTags = get_all("SELECT tag_name, tag_id FROM tag");
+
+            $inserted  = false;
+            foreach($tags as $tag){
+                $tag = trim($tag);
+                $inserted = false;
+                foreach($existTags as $existTag){
+                    if($existTag["tag_name"] == $tag){
+                        insert("post_tags", array("post_id" => $id, "tag_id" => $existTag["tag_id"]));
+                        $inserted = true;
+                    }
+                }
+
+                if(!$inserted){
+                    $newTag = insert("tag", array("tag_name" => $tag));
+                    insert("post_tags", array("post_id" => $id, "tag_id" => $newTag));
+                }
+            }
+        }
+
+        exit(true);
+
+    }
 
 }
 
