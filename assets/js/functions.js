@@ -44,7 +44,6 @@ $(document).ready(function(){
                 data: {"title":title, "text": text,"tags": tags}
             }).done(function(response){
                     if(response == true){
-                        alert("Inserted");
                         window.location = base_url+"posts";
                         $('#addNewPosting').modal('hide');
                     }else{
