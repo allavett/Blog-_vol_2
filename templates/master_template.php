@@ -35,8 +35,6 @@
 
 <body>
 
-
-
 <div id="base_url" style="display:none;" data-value="<?=BASE_URL?>"></div>
 <!-- Fixed navbar -->
 <div class="navbar navbar-default navbar-fixed-top">
@@ -47,7 +45,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="<?=BASE_URL?>">BLOG</a></li>
+			<a class="navbar-brand" href="<?=BASE_URL?>"><?=$loc->translate("welcome_blurb")?></a></li>
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
@@ -100,17 +98,30 @@
 				<? else: ?>
 					<form class="navbar-form navbar-right"  method="post" action="<?= BASE_URL ?>">
 						<div class="form-group">
-							<input type="text" name="username" placeholder="User" class="form-control">
+							<input style="width:100px" type="text" name="username" placeholder="User" class="form-control">
 						</div>
 						<div class="form-group">
-							<input type="password" name="password" placeholder="Password" class="form-control">
+							<input style="width:100px" type="password" name="password" placeholder="Password" class="form-control">
 						</div>
 						<button type="submit" name="signin" class="btn btn-success">Sign in</button>
 						<button type="submit" name="register" class="btn btn-danger">Register</button>
 					</form>
 
 				<? endif ?>
+
+                <li class="dropdown"><a href="#" class="dropdown-toggle"
+                                        data-toggle="dropdown">Select lang<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <form method="post" action="<?=BASE_URL?>">
+                            <li><button type="submit" class="btn btn-success" name="language" style="width:100%;" value="1">Estonian</button></li>
+                            <li><button type="submit" class="btn btn-success" name="language" style="width:100%;"value="2">English</button></li>
+                        </form>
+                    </ul>
+                </li>
+
 			</ul>
+
+
 
 
 		</div><!--/.nav-collapse -->

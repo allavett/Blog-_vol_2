@@ -13,10 +13,14 @@ class Application
 	public $action = 'index';
 	public $controller = DEFAULT_CONTROLLER;
 
+    public $loc = null;
+
+
 	function __construct()
 	{
 		ob_start();
 		session_start();
+
 
 		$this->load_common_functions();
 		$this->load_config();
@@ -25,7 +29,6 @@ class Application
 
 		$this->auth = new Auth;
 		$this->init_db();
-
 
 		// Instantiate controller
 		require "controllers/$this->controller.php";
@@ -36,6 +39,15 @@ class Application
 		$controller->action = $this->action;
 		$controller->params = $this->params;
 		$controller->auth = $this->auth;
+
+        if($_POST &&  array_key_exists ("language", $_POST)){
+                $_SESSION['locale'] = $_POST["language"];
+        }
+
+        $this->loc = new Localization();
+        $controller->loc = $this->loc;
+
+
 
 		// Authenticate user, if controller requires it
 		if (isset($_POST['signin']) || $controller->requires_auth && !$controller->auth->logged_in) {
@@ -61,8 +73,9 @@ class Application
             $controller->{$controller->action}();
             $controller->render($controller->template);
         }
-
 	}
+
+
 
 	private function load_config()
 	{
