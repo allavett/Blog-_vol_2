@@ -113,8 +113,8 @@
                                         data-toggle="dropdown">Select lang<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <form method="post" action="<?=BASE_URL?>">
-                            <li><button type="submit" class="btn btn-success" name="language" style="width:100%;" value="1">Estonian</button></li>
-                            <li><button type="submit" class="btn btn-success" name="language" style="width:100%;"value="2">English</button></li>
+                            <li><button type="submit" class="btn btn-success" name="language" style="width:100%;" value="2">Estonian</button></li>
+                            <li><button type="submit" class="btn btn-success" name="language" style="width:100%;"value="1">English</button></li>
                         </form>
                     </ul>
                 </li>
