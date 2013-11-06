@@ -51,14 +51,14 @@
 			<ul class="nav navbar-nav">
 
                     <? if ($auth->logged_in): ?>
-                        <li  <?= $controller == "posts" ? 'class="active"' : ''?>><a href="<?=BASE_URL?>posts" >Posts</a>
+						<li  <?= $controller == "posts" ? 'class="active"' : ''?>><a href="<?=BASE_URL?>posts" ><?=$loc->translate("posts_link")?></a>
 
                         </li>
 
                         <li class="dropdown" >
                             <a style="padding-left: 0; padding-right: 0;" href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a onclick="Blog.addNewPosting()">Add new post</a></li>
+                                <li><a onclick="Blog.addNewPosting()"><?=$loc->translate("posts_add")?></a></li>
                             </ul>
                         </li>
 
@@ -69,7 +69,7 @@
 
 
 
-				<li <?= $controller == "tags" ? 'class="active"' : ''?>><a href="<?=BASE_URL?>tags">Tags</a></li>
+				<li <?= $controller == "tags" ? 'class="active"' : ''?>><a href="<?=BASE_URL?>tags"><?=$loc->translate("tags_link")?></a></li>
 			<!--
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -90,7 +90,7 @@
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 											data-toggle="dropdown"><?= $_SESSION['username'] ?><b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="<?= BASE_URL ?>logout">Log out</a></li>
+							<li><a href="<?= BASE_URL ?>logout"><?=$loc->translate("logout_link")?></a></li>
 						</ul>
 					</li>
 
@@ -98,22 +98,22 @@
 				<? else: ?>
 					<form class="navbar-form navbar-right"  method="post" action="<?= BASE_URL ?>">
 						<div class="form-group">
-							<input style="width:100px" type="text" name="username" placeholder="User" class="form-control">
+							<input style="width:100px" type="text" name="username" placeholder="<?=$loc->translate("user_plh")?>" class="form-control">
 						</div>
 						<div class="form-group">
-							<input style="width:100px" type="password" name="password" placeholder="Password" class="form-control">
+							<input style="width:100px" type="password" name="password" placeholder="<?=$loc->translate("password_plh")?>" class="form-control">
 						</div>
-						<button type="submit" name="signin" class="btn btn-success">Sign in</button>
-						<button type="submit" name="register" class="btn btn-danger">Register</button>
+						<button type="submit" name="signin" class="btn btn-success"><?=$loc->translate("signin_btn")?></a></button>
+						<button type="submit" name="register" class="btn btn-danger"><?=$loc->translate("register_btn")?></a></button>
 					</form>
 
 				<? endif ?>
 
                 <li class="dropdown"><a href="#" class="dropdown-toggle"
-                                        data-toggle="dropdown">Select lang<b class="caret"></b></a>
+                                        data-toggle="dropdown"><?=$loc->translate("posts_link")?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <form method="post" action="<?=BASE_URL?>">
-                            <li><button type="submit" class="btn btn-success" name="language" style="width:100%;" value="2">Estonian</button></li>
+                            <li><button type="submit" class="btn btn-success" name="language" style="width:100%;" value="2">Eesti</button></li>
                             <li><button type="submit" class="btn btn-success" name="language" style="width:100%;"value="1">English</button></li>
                         </form>
                     </ul>

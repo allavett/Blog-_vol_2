@@ -1,19 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.1-dev
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2013 kell 08:54 PM
--- Server version: 5.5.32
--- PHP Version: 5.4.19
+-- Loomise aeg: Nov 06, 2013 kell 08:40 PM
+-- Serveri versioon: 5.5.32
+-- PHP versioon: 5.4.19
 
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `blogvol2`
+-- Andmebaas: `blogvol2`
 --
+
 
 -- --------------------------------------------------------
 
@@ -198,14 +199,23 @@ CREATE TABLE IF NOT EXISTS `terms` (
   `terms_id` int(11) NOT NULL AUTO_INCREMENT,
   `value` varchar(128) COLLATE utf8_estonian_ci DEFAULT NULL,
   PRIMARY KEY (`terms_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=17 ;
 
 --
 -- Andmete tõmmistamine tabelile `terms`
 --
 
 INSERT INTO `terms` (`terms_id`, `value`) VALUES
-(3, 'welcome_blurb');
+(3, 'welcome_blurb'),
+(8, 'posts_link'),
+(9, 'posts_add'),
+(10, 'tags_link'),
+(11, 'logout_link'),
+(12, 'lang_link'),
+(13, 'signin_btn'),
+(14, 'register_btn'),
+(15, 'user_plh'),
+(16, 'password_plh');
 
 -- --------------------------------------------------------
 
@@ -220,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `translations` (
   `terms_id` int(11) NOT NULL,
   `value` varchar(128) COLLATE utf8_estonian_ci DEFAULT NULL,
   PRIMARY KEY (`translation_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=27 ;
 
 --
 -- Andmete tõmmistamine tabelile `translations`
@@ -228,7 +238,25 @@ CREATE TABLE IF NOT EXISTS `translations` (
 
 INSERT INTO `translations` (`translation_id`, `locale_id`, `terms_id`, `value`) VALUES
 (5, 1, 3, 'Welcome to blog!'),
-(6, 2, 3, 'Tere tulemast blogisse!');
+(6, 2, 3, 'Tere tulemast blogisse!'),
+(9, 1, 8, 'Posts'),
+(10, 2, 8, 'Postitused'),
+(11, 1, 9, 'Add new post'),
+(12, 2, 9, 'Lisa uus postitus'),
+(13, 1, 10, 'Tags'),
+(14, 2, 10, 'Sildid'),
+(15, 1, 11, 'Logout'),
+(16, 2, 11, 'Logi välja'),
+(17, 1, 12, 'Select lang'),
+(18, 2, 12, 'Vali keel'),
+(19, 1, 13, 'Sign in'),
+(20, 2, 13, 'Logi sisse'),
+(21, 1, 14, 'Register'),
+(22, 2, 14, 'Registreeri'),
+(23, 1, 15, 'User'),
+(24, 2, 15, 'Kasutaja'),
+(25, 1, 16, 'Password'),
+(26, 2, 16, 'Parool');
 
 -- --------------------------------------------------------
 
