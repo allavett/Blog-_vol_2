@@ -9,7 +9,7 @@
 			echo "..";
 		}?></p>
 		<div>
-			<span class="badge badge-success">Posted on <?=$post['post_created']?> by <?=$post['username']?>.</span>
+			<span class="badge badge-success"><?=$loc->translate("posted")?></a><?=$post['post_created']?><?=$loc->translate("posted_by")?><?=$post['username']?>.</span>
 
             <?
             if(array_key_exists($post['post_id'], $tags)):

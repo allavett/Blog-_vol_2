@@ -64,7 +64,7 @@
 
 
                     <? else: ?>
-                        <li <?= $controller == "posts" ? 'class="active"' : ''?>><a href="<?=BASE_URL?>">Posts</a></li>
+                        <li <?= $controller == "posts" ? 'class="active"' : ''?>><a href="<?=BASE_URL?>"><?=$loc->translate("posts_link")?></a></li>
                     <? endif ?>
 
 
