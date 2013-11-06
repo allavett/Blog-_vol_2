@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Loomise aeg: Nov 06, 2013 kell 09:33 PM
+-- Loomise aeg: Nov 06, 2013 kell 10:27 PM
 -- Serveri versioon: 5.5.32
 -- PHP versioon: 5.4.19
 
@@ -199,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `terms` (
   `terms_id` int(11) NOT NULL AUTO_INCREMENT,
   `value` varchar(128) COLLATE utf8_estonian_ci DEFAULT NULL,
   PRIMARY KEY (`terms_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=34 ;
 
 --
 -- Andmete tõmmistamine tabelile `terms`
@@ -221,7 +221,18 @@ INSERT INTO `terms` (`terms_id`, `value`) VALUES
 (19, 'comment_txt'),
 (20, 'comment_btn'),
 (21, 'comment'),
-(22, 'comment_by');
+(22, 'comment_by'),
+(23, 'register_username'),
+(24, 'register_label'),
+(25, 'register_username_txt'),
+(26, 'register_email_txt'),
+(27, 'register_password'),
+(28, 'register_password_txt'),
+(29, 'register_password_confirm'),
+(30, 'register_password_confirm_txt'),
+(31, 'avatar'),
+(32, 'avatar_dimensions'),
+(33, 'comment_empty');
 
 -- --------------------------------------------------------
 
@@ -236,7 +247,7 @@ CREATE TABLE IF NOT EXISTS `translations` (
   `terms_id` int(11) NOT NULL,
   `value` varchar(128) COLLATE utf8_estonian_ci DEFAULT NULL,
   PRIMARY KEY (`translation_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=39 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=61 ;
 
 --
 -- Andmete tõmmistamine tabelile `translations`
@@ -274,7 +285,29 @@ INSERT INTO `translations` (`translation_id`, `locale_id`, `terms_id`, `value`) 
 (35, 1, 21, 'Comment posted on '),
 (36, 2, 21, 'Kommentaar on postitatud '),
 (37, 1, 22, 'by '),
-(38, 2, 22, 'Kommenteeris:  ');
+(38, 2, 22, 'Kommenteeris:  '),
+(39, 1, 23, 'Username'),
+(40, 2, 23, 'Kasutajanimi'),
+(41, 1, 24, 'Register'),
+(42, 2, 24, 'Registreerimine'),
+(43, 1, 25, 'Username can contain any letters or numbers, without spaces'),
+(44, 2, 25, 'Kasutajanimes tohib kasutada ainult tähti ja numbreid ilma tühikuteta'),
+(45, 1, 26, 'Please provide your E-mail'),
+(46, 2, 26, 'Palun sisesta oma E-maili aadress'),
+(47, 1, 27, 'Password'),
+(48, 2, 27, 'Parool'),
+(49, 1, 28, 'Password should be at least 4 characters'),
+(50, 2, 28, 'Parool peaks olema vähemalt 4 tähemärki'),
+(51, 1, 29, 'Password (Confirm)'),
+(52, 2, 29, 'Parool (Kinnitus)'),
+(53, 1, 30, 'Please confirm password'),
+(54, 2, 30, 'Palun kinnita parool'),
+(55, 1, 31, 'Avatar'),
+(56, 2, 31, 'Pilt'),
+(57, 1, 32, 'Avatar max dimensions are 100x100'),
+(58, 2, 32, 'Pildi maksimaalsed mõõtmed on 100x100'),
+(59, 1, 33, 'Your comment is empty!'),
+(60, 2, 33, 'Sinu kommentaar on tühi!');
 
 -- --------------------------------------------------------
 

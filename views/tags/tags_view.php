@@ -10,7 +10,7 @@
 		?>
 	</p>
 		<div>
-			<span class="badge badge-success">Posted on <?=$post['post_created']?> by <?=$post['username']?>.</span>
+			<span class="badge badge-success"><?=$loc->translate("posted")?><?=$post['post_created']?><?=$loc->translate("posted_by")?><?=$post['username']?>.</span>
 			<?foreach ($tags[$post['post_id']] as $tag):?>
 				<a href="<?=BASE_URL?>tags/view/<?=$tag['tag_id']?>"><span class="label label-info"><?=$tag['tag_name']?></span></a>
 			<?endforeach?>
