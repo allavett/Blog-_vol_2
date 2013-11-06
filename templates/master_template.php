@@ -110,7 +110,7 @@
 				<? endif ?>
 
                 <li class="dropdown"><a href="#" class="dropdown-toggle"
-                                        data-toggle="dropdown"><?=$loc->translate("posts_link")?><b class="caret"></b></a>
+                                        data-toggle="dropdown"><?=$loc->translate("lang_link")?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <form method="post" action="<?=BASE_URL?>">
                             <li><button type="submit" class="btn btn-success" name="language" style="width:100%;" value="2">Eesti</button></li>
