@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Loomise aeg: Nov 06, 2013 kell 08:40 PM
+-- Loomise aeg: Nov 06, 2013 kell 09:33 PM
 -- Serveri versioon: 5.5.32
 -- PHP versioon: 5.4.19
 
@@ -199,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `terms` (
   `terms_id` int(11) NOT NULL AUTO_INCREMENT,
   `value` varchar(128) COLLATE utf8_estonian_ci DEFAULT NULL,
   PRIMARY KEY (`terms_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=23 ;
 
 --
 -- Andmete tõmmistamine tabelile `terms`
@@ -215,7 +215,13 @@ INSERT INTO `terms` (`terms_id`, `value`) VALUES
 (13, 'signin_btn'),
 (14, 'register_btn'),
 (15, 'user_plh'),
-(16, 'password_plh');
+(16, 'password_plh'),
+(17, 'posted'),
+(18, 'posted_by'),
+(19, 'comment_txt'),
+(20, 'comment_btn'),
+(21, 'comment'),
+(22, 'comment_by');
 
 -- --------------------------------------------------------
 
@@ -230,7 +236,7 @@ CREATE TABLE IF NOT EXISTS `translations` (
   `terms_id` int(11) NOT NULL,
   `value` varchar(128) COLLATE utf8_estonian_ci DEFAULT NULL,
   PRIMARY KEY (`translation_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=39 ;
 
 --
 -- Andmete tõmmistamine tabelile `translations`
@@ -256,7 +262,19 @@ INSERT INTO `translations` (`translation_id`, `locale_id`, `terms_id`, `value`) 
 (23, 1, 15, 'User'),
 (24, 2, 15, 'Kasutaja'),
 (25, 1, 16, 'Password'),
-(26, 2, 16, 'Parool');
+(26, 2, 16, 'Parool'),
+(27, 1, 17, 'Posted on '),
+(28, 2, 17, 'Postitatud '),
+(29, 1, 18, ' by '),
+(30, 2, 18, ' Postitas: '),
+(31, 1, 19, 'Your comment..'),
+(32, 2, 19, 'Sinu kommentaar..'),
+(33, 1, 20, 'Submit'),
+(34, 2, 20, 'Kommenteeri'),
+(35, 1, 21, 'Comment posted on '),
+(36, 2, 21, 'Kommentaar on postitatud '),
+(37, 1, 22, 'by '),
+(38, 2, 22, 'Kommenteeris:  ');
 
 -- --------------------------------------------------------
 
