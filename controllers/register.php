@@ -27,7 +27,7 @@ class register extends Controller {
 				}
 			}
 			if (preg_match("/@/", $_POST['email'])&&!preg_match("/ /", $_POST['email'])) {
-				if ($_POST['password']>=4){
+				if (strlen($_POST['password'])>=4){
 					if ($_POST['password']==$_POST['password_confirm']){
 						$allowedExts = array("gif", "jpeg", "jpg", "png");
 						$temp = explode(".", $_FILES["file"]["name"]);

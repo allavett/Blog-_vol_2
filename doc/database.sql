@@ -1,21 +1,18 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 4.1.0-alpha2
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Loomise aeg: Nov 08, 2013 kell 12:36 AM
--- Serveri versioon: 5.5.32
--- PHP versioon: 5.4.19
+-- Generation Time: Nov 08, 2013 kell 12:46 AM
+-- Server version: 5.5.32
+-- PHP Version: 5.4.19
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Andmebaas: `blogvol2`
+-- Database: `blogvol2`
 --
-CREATE DATABASE IF NOT EXISTS `blogvol2` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `blogvol2`;
 
 -- --------------------------------------------------------
 
@@ -31,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `comment_author` varchar(25) CHARACTER SET latin1 NOT NULL,
   `author_id` int(11) NOT NULL,
   PRIMARY KEY (`comment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=13 ;
 
 --
 -- Andmete tõmmistamine tabelile `comment`
@@ -48,8 +45,7 @@ INSERT INTO `comment` (`comment_id`, `comment_text`, `comment_created`, `comment
 (9, 'wut', '2013-11-07 21:15:22', 'kemo', 2),
 (10, 'wut', '2013-11-07 21:16:11', 'kemo', 2),
 (11, 'wut', '2013-11-07 21:16:35', 'kemo', 2),
-(12, 'wut', '2013-11-07 21:17:06', 'kemo', 2),
-(13, 'qwewqre', '2013-11-07 23:33:16', 'demo', 1);
+(12, 'wut', '2013-11-07 21:17:06', 'kemo', 2);
 
 -- --------------------------------------------------------
 
@@ -87,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   `user_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`post_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=10 ;
 
 --
 -- Andmete tõmmistamine tabelile `post`
@@ -101,7 +97,8 @@ INSERT INTO `post` (`post_id`, `post_subject`, `post_text`, `post_created`, `use
 (5, 'Test5', 'Postituse tekst 5', '2013-10-26 08:35:59', 1),
 (6, 'Test6', 'Postituse tekst 6', '2013-10-26 08:36:59', 1),
 (7, 'Anekdoot', 'Eesti talumees sõidab reega kodu poole. Mehel ka kaks poega kaasas. Mingil hetkel jookseb jänes üle tee.\r\nMöödub pool tundi ja esimene poeg hüüatab: «Näe, jänes!»\r\nMöödub veel pool tundi ja teine poeg nähvab: «Ei olnud jänes, sa lollpea!»\r\nMöödub järgmine pooltund ning talumees sõnab lepitavalt: «Mis te tulised eesti poisid nüüd selle tühja-tähja pärast tüli kisute.»', '2013-10-27 12:10:49', 1),
-(8, 'Uus postitus', 'Postituse tekst', '2013-11-07 12:57:56', 1);
+(8, 'Uus postitus', 'Postituse tekst', '2013-11-07 12:57:56', 1),
+(9, 'How to..', 'http://www.youtube.com/watch?v=lPunkSBy6tc', '2013-11-07 23:44:44', 3);
 
 -- --------------------------------------------------------
 
@@ -129,8 +126,7 @@ INSERT INTO `post_comments` (`post_id`, `comment_id`) VALUES
 (7, 9),
 (7, 10),
 (7, 11),
-(7, 12),
-(8, 13);
+(7, 12);
 
 -- --------------------------------------------------------
 
@@ -163,7 +159,8 @@ INSERT INTO `post_tags` (`post_id`, `tag_id`) VALUES
 (4, 4),
 (6, 4),
 (7, 4),
-(8, 5);
+(8, 5),
+(9, 6);
 
 -- --------------------------------------------------------
 
@@ -176,7 +173,7 @@ CREATE TABLE IF NOT EXISTS `tag` (
   `tag_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `tag_name` varchar(25) NOT NULL,
   PRIMARY KEY (`tag_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Andmete tõmmistamine tabelile `tag`
@@ -187,7 +184,8 @@ INSERT INTO `tag` (`tag_id`, `tag_name`) VALUES
 (2, 'Postitus'),
 (3, 'Taggens2'),
 (4, 'Tekst'),
-(5, 'Silt');
+(5, 'Silt'),
+(6, 'Youtube');
 
 -- --------------------------------------------------------
 
@@ -366,8 +364,8 @@ INSERT INTO `translations` (`translation_id`, `locale_id`, `terms_id`, `value`) 
 (92, 2, 49, 'Paroolid on liiga lühike!'),
 (93, 1, 50, 'Not a valid email address!'),
 (94, 2, 50, 'See ei ole õige meili aadress!'),
-(95, 1, 51, 'All fields, except avatar, must be filled!'),
-(96, 2, 51, 'Kõik väljad, väljaarvatud avatar, peavad olema täidetud!'),
+(95, 1, 51, 'All fields must be filled, even avatar!'),
+(96, 2, 51, 'Kõik väljad peavad olema täidetud, ka avatari oma!'),
 (97, 1, 52, 'Wrong username or password!'),
 (98, 2, 52, 'Vale kasutajanimi või parool!'),
 (99, 1, 53, 'Please sign in'),
@@ -394,7 +392,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `avatar` varchar(100) NOT NULL,
   `deleted` tinyint(3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Andmete tõmmistamine tabelile `user`
@@ -402,7 +400,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `avatar`, `deleted`) VALUES
 (1, 'demo', 'demo', '', 'demodemo.png', 0),
-(2, 'kemo', 'kemo', 'kemo@kemo.ee', 'Kemo_thumb.jpg', 0);
+(2, 'kemo', 'kemo', 'kemo@kemo.ee', 'Kemo_thumb.jpg', 0),
+(3, 'allar', 'allar', 'allar@allar.ee', 'allarhaamritöö.png', 0);
 
 --
 -- Tõmmistatud tabelite piirangud
@@ -412,12 +411,11 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `avatar`, `delet
 -- Piirangud tabelile `post`
 --
 ALTER TABLE `post`
-ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
 --
 -- Piirangud tabelile `post_comments`
 --
 ALTER TABLE `post_comments`
-ADD CONSTRAINT `post_comments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`),
-ADD CONSTRAINT `post_comments_ibfk_2` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`comment_id`);
-SET FOREIGN_KEY_CHECKS=1;
+  ADD CONSTRAINT `post_comments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`),
+  ADD CONSTRAINT `post_comments_ibfk_2` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`comment_id`);
