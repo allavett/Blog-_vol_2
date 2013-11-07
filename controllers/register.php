@@ -19,10 +19,10 @@ class register extends Controller {
 			foreach ($usernames as $username){
 				$this->usernames[$username['username']][]= array('username'=>$username['username']);
 				if (strtolower($_POST['username'])== strtolower($username['username'])){
-					$this->notification = '<span class="label" style="background-color:#ff5849">Username already taken!</span>';
+					$this->notification = '<span class="label" style="background-color:#ff5849">'.$this->loc->translate("register_user_taken").'</span>';
 					return;
 				}elseif(preg_match('/[\s-_!@£$€})({"#¤%&=?]+/', $_POST['username'])){
-					$this->notification = '<span class="label" style="background-color:#ff5849">Username can contain only letters and numbers!</span>';
+					$this->notification = '<span class="label" style="background-color:#ff5849">'.$this->loc->translate("register_invalid_signs").'</span>';
 					return;
 				}
 			}
@@ -38,7 +38,7 @@ class register extends Controller {
 							$width = $img_dimensions[0];
 							$height = $img_dimensions[1];
 							if ($width > 200||$height > 100) {
-								$this->notification = '<span class="label" style="background-color:#ff5849">Image dimensions too big!</span>';
+								$this->notification = '<span class="label" style="background-color:#ff5849">'.$this->loc->translate("register_avatar_toobig").'</span>';
 							}else{
 								if (!is_dir('upload/')) {
 									mkdir('upload/', 0777, true);
@@ -51,19 +51,19 @@ class register extends Controller {
 								}
 							}
 						}else{
-							$this->notification = '<span class="label" style="background-color:#ff5849">Check your image file!</span>';
+							$this->notification = '<span class="label" style="background-color:#ff5849">'.$this->loc->translate("register_avatar_file").'</span>';
 						}
 					}else{
-						$this->notification = '<span class="label" style="background-color:#ff5849">Password does not match!</span>';
+						$this->notification = '<span class="label" style="background-color:#ff5849">'.$this->loc->translate("register_pass_nomatch").'</span>';
 					}
 				}else{
-					$this->notification = '<span class="label" style="background-color:#ff5849">Password is too short!</span>';
+					$this->notification = '<span class="label" style="background-color:#ff5849">'.$this->loc->translate("register_pass_tooshort").'</span>';
 				}
 			}else{
-				$this->notification = '<span class="label" style="background-color:#ff5849">Not a valid email address!</span>';
+				$this->notification = '<span class="label" style="background-color:#ff5849">'.$this->loc->translate("register_mail_invalid").'</span>';
 			}
 		}else{
-			$this->notification = '<span class="label" style="background-color:#ff5849">All fields must be filled!</span>';
+			$this->notification = '<span class="label" style="background-color:#ff5849">'.$this->loc->translate("register_all_fields").'</span>';
 		}
 	}
 }
