@@ -50,7 +50,6 @@
 <div>
     <?foreach ($comments as $comment):?>
         <br />
-        <?   // print_r($comment);//!empty($comment["user"]) $comment["user"]["avatar"]?>
 
         <span class="comment" >
 
