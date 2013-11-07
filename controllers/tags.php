@@ -21,4 +21,5 @@ class tags extends Controller {
 			$this->tags[$tag['post_id']][] = array('tag_id'=>$tag['tag_id'], 'tag_name'=>$tag['tag_name']);
 		}
 	}
+
 }
