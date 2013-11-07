@@ -14,7 +14,15 @@ class posts extends Controller{
         $post_id = $this->params[0];
         $this->post = get_one("SELECT * FROM post NATURAL JOIN user WHERE post_id='$post_id'");
         $this->tags=get_all("SELECT * FROM post_tags NATURAL JOIN tag WHERE post_id='$post_id'");
-        $this->comments = get_all("SELECT * FROM post_comments NATURAL JOIN comment WHERE post_id = '$post_id'");
+        $comments = get_all("SELECT * FROM post_comments NATURAL JOIN comment WHERE post_id = '$post_id'");
+        $this->comments = array();
+
+        foreach($comments as $comment){
+            $author_id = $comment["author_id"];
+            $comment["user"] = get_one("SELECT user_id, username, avatar FROM user WHERE user_id = '$author_id'");
+            array_push($this->comments, $comment);
+        }
+        $this->users = get_all("SELECT user_id, username, avatar FROM user");
 		//Check if user has avatar
 		$target_size=50; //Define avatar size
 		if ($this->post['avatar']==NULL){
@@ -40,7 +48,7 @@ class posts extends Controller{
 
                 $comment_author = get_one("SELECT * FROM user WHERE user_id='$comment_author_id'");
 
-                $sql_comment = insert('comment', array('comment_text' => $comment_text, 'comment_author' =>$comment_author['username']));
+                $sql_comment = insert('comment', array('comment_text' => $comment_text, 'comment_author' =>$comment_author['username'], 'author_id' => $comment_author_id));
 
                 if($sql_comment != false){
                     $sql_comment2 = insert('post_comments', array('post_id' => $post_id, 'comment_id' =>$sql_comment));

@@ -1,18 +1,18 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 4.1-dev
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Loomise aeg: Nov 07, 2013 kell 07:37 PM
--- Serveri versioon: 5.5.32
--- PHP versioon: 5.4.19
+-- Generation Time: Nov 07, 2013 kell 10:18 PM
+-- Server version: 5.5.32
+-- PHP Version: 5.4.19
 
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Andmebaas: `blogvol2`
+-- Database: `blogvol2`
 --
 
 -- --------------------------------------------------------
@@ -27,19 +27,26 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `comment_text` varchar(500) CHARACTER SET latin1 NOT NULL,
   `comment_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `comment_author` varchar(25) CHARACTER SET latin1 NOT NULL,
+  `author_id` int(11) NOT NULL,
   PRIMARY KEY (`comment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=13 ;
 
 --
 -- Andmete tõmmistamine tabelile `comment`
 --
 
-INSERT INTO `comment` (`comment_id`, `comment_text`, `comment_created`, `comment_author`) VALUES
-(2, 'Huvitav', '2013-10-29 10:09:37', 'demo'),
-(3, 'Hahahhahah a', '2013-11-03 18:38:11', 'kemo'),
-(4, 'Hahahhahah a', '2013-11-03 18:41:47', 'kemo'),
-(5, 'test', '2013-11-07 12:32:03', 'demo'),
-(6, 'test', '2013-11-07 12:32:15', 'demo');
+INSERT INTO `comment` (`comment_id`, `comment_text`, `comment_created`, `comment_author`, `author_id`) VALUES
+(2, 'Huvitav', '2013-10-29 10:09:37', 'demo', 0),
+(3, 'Hahahhahah a', '2013-11-03 18:38:11', 'kemo', 0),
+(4, 'Hahahhahah a', '2013-11-03 18:41:47', 'kemo', 0),
+(5, 'test', '2013-11-07 12:32:03', 'demo', 0),
+(6, 'test', '2013-11-07 12:32:15', 'demo', 0),
+(7, 'Ouujeee', '2013-11-07 20:35:39', 'kemo', 0),
+(8, 'Ouujeee', '2013-11-07 20:41:56', 'kemo', 2),
+(9, 'wut', '2013-11-07 21:15:22', 'kemo', 2),
+(10, 'wut', '2013-11-07 21:16:11', 'kemo', 2),
+(11, 'wut', '2013-11-07 21:16:35', 'kemo', 2),
+(12, 'wut', '2013-11-07 21:17:06', 'kemo', 2);
 
 -- --------------------------------------------------------
 
@@ -113,7 +120,13 @@ CREATE TABLE IF NOT EXISTS `post_comments` (
 
 INSERT INTO `post_comments` (`post_id`, `comment_id`) VALUES
 (7, 3),
-(7, 4);
+(7, 4),
+(8, 7),
+(8, 8),
+(7, 9),
+(7, 10),
+(7, 11),
+(7, 12);
 
 -- --------------------------------------------------------
 

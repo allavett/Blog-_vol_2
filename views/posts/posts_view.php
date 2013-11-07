@@ -31,10 +31,13 @@
 <div>
     <?foreach ($comments as $comment):?>
         <br />
+        <? //   !empty($comment["user"]) $comment["user"]["avatar"]?>
+
         <span class="comment" style="background-color:#afe4ff">
                                 <?=$comment['comment_text']?>
-            <p><?=$loc->translate("comment")?></a><?=$comment['comment_created']?><?=$loc->translate("comment_by")?></a><?=$comment['comment_author']?></p>
+            <p><?=$loc->translate("comment")?></a><?=$comment['comment_created']?> <?=$loc->translate("comment_by")?></a><?=$comment['comment_author']?></p>
                         </span>
     <?endforeach?>
 </div>
+
 </div>
