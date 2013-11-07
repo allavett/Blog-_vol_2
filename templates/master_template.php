@@ -140,30 +140,30 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Add new post</h4>
+                <h4 class="modal-title" id="myModalLabel"><?=$loc->translate("new_post")?></h4>
             </div>
             <div class="modal-body">
                 <form action="" method="post" class="form-horizontal">
                     <fieldset>
                         <div class="control-group">
-                            <label class="control-label">Post title</label>
+                            <label class="control-label"><?=$loc->translate("new_post_title")?></label>
                             <div class="controls">
-                                <input type="text" id="post_title" placeholder="Post title" class="form-control">
+                                <input type="text" id="post_title" placeholder="<?=$loc->translate("new_post_title")?>" class="form-control">
                             </div>
                         </div>
 
 
                         <div class="control-group">
-                            <label class="control-label">Post text</label>
+                            <label class="control-label"><?=$loc->translate("new_post_txt")?></label>
                             <div class="controls">
-                                <textarea style="resize: none;" type="text" id="post_text" placeholder="Post text" class="form-control"></textarea>
+                                <textarea style="resize: none;" type="text" id="post_text" placeholder="<?=$loc->translate("new_post_txt")?>" class="form-control"></textarea>
                             </div>
                         </div>
 
                         <div class="control-group">
-                            <label class="control-label">Tags</label>
+                            <label class="control-label"><?=$loc->translate("new_post_tags")?></label>
                             <div class="controls">
-                                <input type="text" id="post_tags" placeholder="Example: weather; news; beer" class="form-control">
+                                <input type="text" id="post_tags" placeholder="<?=$loc->translate("new_post_tags_txt")?>" class="form-control">
                             </div>
                         </div>
 
@@ -171,8 +171,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" id="savePost" class="btn btn-primary">Save post</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?=$loc->translate("new_post_close")?></button>
+                <button type="button" id="savePost" class="btn btn-primary"><?=$loc->translate("new_post_save")?></button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
