@@ -120,7 +120,13 @@ CREATE TABLE IF NOT EXISTS `post_comments` (
 
 INSERT INTO `post_comments` (`post_id`, `comment_id`) VALUES
 (7, 3),
-(7, 4);
+(7, 4),
+(8, 7),
+(8, 8),
+(7, 9),
+(7, 10),
+(7, 11),
+(7, 12);
 
 -- --------------------------------------------------------
 
@@ -402,11 +408,13 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `avatar`, `delet
 -- Piirangud tabelile `post`
 --
 ALTER TABLE `post`
-  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
 --
 -- Piirangud tabelile `post_comments`
 --
 ALTER TABLE `post_comments`
-  ADD CONSTRAINT `post_comments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`),
-  ADD CONSTRAINT `post_comments_ibfk_2` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`comment_id`);
+ADD CONSTRAINT `post_comments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`),
+ADD CONSTRAINT `post_comments_ibfk_2` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`comment_id`);
+SET FOREIGN_KEY_CHECKS=1;
+
