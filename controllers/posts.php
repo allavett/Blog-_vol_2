@@ -29,12 +29,12 @@ class posts extends Controller{
         if (isset($_POST['comment_new'])) {
             $comment_text=$_POST['comment_new'];
             if($comment_text==NULL){
-                $this->notification = '<span class="label" style="background-color:#ff5849">Your comment is empty!</span>';
+                $this->notification = '<span class="label" style="background-color:#ff5849">'.$this->loc->translate("comment_no_text").'</span>';
             }else{
                 $comment_author_id = $_SESSION['user_id'];
 
                 if($comment_author_id == FALSE){
-                    $this->notification = '<span class="label" style="background-color:#ff5849">How the hell did you inserted comment without logging in?!</span>';
+                    $this->notification = '<span class="label" style="background-color:#ff5849">'.$this->loc->translate("comment_no_auth").'</span>';
                     return;
                 }
 
@@ -46,7 +46,7 @@ class posts extends Controller{
                     $sql_comment2 = insert('post_comments', array('post_id' => $post_id, 'comment_id' =>$sql_comment));
                     $inserted = empty($sql_comment2);
                     if($inserted){
-                        $this->notification = '<span class="notification" style="background-color:#8BA870">Comment submitted successfully.</span>';
+                        $this->notification = '<span class="notification" style="background-color:#8BA870">'.$this->loc->translate("comment_ok").'</span>';
 
                     }
                 }
