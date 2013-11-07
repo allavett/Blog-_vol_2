@@ -401,7 +401,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `avatar`, `deleted`) VALUES
 (1, 'demo', 'demo', '', 'demodemo.png', 0),
 (2, 'kemo', 'kemo', 'kemo@kemo.ee', 'Kemo_thumb.jpg', 0),
-(3, 'allar', 'allar', 'allar@allar.ee', 'allarhaamritöö.png', 0);
+(3, 'allar', 'allar', 'allar@allar.ee', 'allarpilt.jpg', 0);
 
 --
 -- Tõmmistatud tabelite piirangud
