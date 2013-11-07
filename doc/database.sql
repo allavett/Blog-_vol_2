@@ -1,18 +1,18 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.0-alpha2
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2013 kell 02:01 PM
--- Server version: 5.5.32
--- PHP Version: 5.4.19
+-- Loomise aeg: Nov 07, 2013 kell 07:37 PM
+-- Serveri versioon: 5.5.32
+-- PHP versioon: 5.4.19
 
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `blogvol2`
+-- Andmebaas: `blogvol2`
 --
 
 -- --------------------------------------------------------
@@ -183,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `terms` (
   `terms_id` int(11) NOT NULL AUTO_INCREMENT,
   `value` varchar(128) COLLATE utf8_estonian_ci DEFAULT NULL,
   PRIMARY KEY (`terms_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=37 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=44 ;
 
 --
 -- Andmete tõmmistamine tabelile `terms`
@@ -219,7 +219,14 @@ INSERT INTO `terms` (`terms_id`, `value`) VALUES
 (33, 'comment_empty'),
 (34, 'comment_no_text'),
 (35, 'comment_no_auth'),
-(36, 'comment_ok');
+(36, 'comment_ok'),
+(37, 'new_post'),
+(38, 'new_post_title'),
+(39, 'new_post_txt'),
+(40, 'new_post_tags'),
+(41, 'new_post_close'),
+(42, 'new_post_save'),
+(43, 'new_post_tags_txt');
 
 -- --------------------------------------------------------
 
@@ -234,7 +241,7 @@ CREATE TABLE IF NOT EXISTS `translations` (
   `terms_id` int(11) NOT NULL,
   `value` varchar(128) COLLATE utf8_estonian_ci DEFAULT NULL,
   PRIMARY KEY (`translation_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=67 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=81 ;
 
 --
 -- Andmete tõmmistamine tabelile `translations`
@@ -300,7 +307,21 @@ INSERT INTO `translations` (`translation_id`, `locale_id`, `terms_id`, `value`) 
 (63, 1, 35, 'How the hell did you insert comment without logging in?!'),
 (64, 2, 35, 'Kuidas sul õnnestus lisada kommentaar ilma sisse logimata?!'),
 (65, 1, 36, 'Comment submitted successfully!'),
-(66, 2, 36, 'Kommentaar edukalt lisatud!');
+(66, 2, 36, 'Kommentaar edukalt lisatud!'),
+(67, 1, 37, 'Add new post'),
+(68, 2, 37, 'Lisa uus postitus'),
+(69, 1, 38, 'Post title'),
+(70, 2, 38, 'Postituse pealkiri'),
+(71, 1, 39, 'Post text'),
+(72, 2, 39, 'Postituse tekst'),
+(73, 1, 40, 'Tags'),
+(74, 2, 40, 'Sildid'),
+(75, 1, 41, 'Close'),
+(76, 2, 41, 'Sulge'),
+(77, 1, 42, 'Save post'),
+(78, 2, 42, 'Salvesta'),
+(79, 1, 43, 'Example: weather; news; beer'),
+(80, 2, 43, 'Näidiseks: ilm, uudised, õlu');
 
 -- --------------------------------------------------------
 
@@ -335,12 +356,12 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `avatar`, `delet
 -- Piirangud tabelile `post`
 --
 ALTER TABLE `post`
-  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
 --
 -- Piirangud tabelile `post_comments`
 --
 ALTER TABLE `post_comments`
-  ADD CONSTRAINT `post_comments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`),
-  ADD CONSTRAINT `post_comments_ibfk_2` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`comment_id`);
+ADD CONSTRAINT `post_comments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`),
+ADD CONSTRAINT `post_comments_ibfk_2` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`comment_id`);
 SET FOREIGN_KEY_CHECKS=1;
