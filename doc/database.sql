@@ -403,3 +403,4 @@ ALTER TABLE `post_comments`
   ADD CONSTRAINT `post_comments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`),
   ADD CONSTRAINT `post_comments_ibfk_2` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`comment_id`);
 SET FOREIGN_KEY_CHECKS=1;
+
