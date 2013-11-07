@@ -40,12 +40,21 @@ class Application
 		$controller->params = $this->params;
 		$controller->auth = $this->auth;
 
-        if($_POST &&  array_key_exists ("language", $_POST)){
-                $_SESSION['locale'] = $_POST["language"];
-        }
 
         $this->loc = new Localization();
         $controller->loc = $this->loc;
+
+        if($_POST &&  array_key_exists ("language", $_POST)){
+                setcookie("locale", $_POST["language"]);
+
+                $this->loc->locale = $_POST["language"];
+        }elseif(isset($_COOKIE["locale"])){
+            $this->loc->locale = $_COOKIE["locale"];
+        }
+
+        $this->loc->getTranslations();
+
+
 
 
 

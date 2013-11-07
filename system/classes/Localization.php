@@ -5,18 +5,10 @@ class Localization
 
     public $translations = array();
 
-    function __construct()
-    {
-        if(!isset($_SESSION['locale'])){
-            $_SESSION['locale'] = 1;
-        }
+    public $locale = 2;
 
-        $this->getTranslations();
-    }
-
-    function getTranslations()
+    public function getTranslations()
     {
-        $locale = $_SESSION['locale'];
         $translationQuery = get_all("
 SELECT terms_value as token,MAX(translation_value) value
     FROM
@@ -25,10 +17,10 @@ SELECT terms_value as token,MAX(translation_value) value
          FROM terms T LEFT JOIN translations R
          ON T.terms_id=R.terms_id
          UNION
-         SELECT T.value,'',$locale FROM terms T
+         SELECT T.value,'',$this->locale FROM terms T
      ) A
      WHERE
-         locale_id = $locale
+         locale_id = $this->locale
      GROUP By terms_value
      ");
 
