@@ -18,7 +18,7 @@
 	<!-- Custom styles for this template -->
 	<style>
 		body {
-			min-height: 2000px !important;
+            margin-bottom: 50px;
 			padding-top: 70px;
 			background: url(<?= ASSETS_URL ?>'img/bg.jpg');
 		}
@@ -95,14 +95,14 @@
 
                     <div id="user_id" style="display:none;" data-value="<?=$_SESSION['user_id']?>"></div>
 				<? else: ?>
-					<form class="navbar-form navbar-right"  method="post" action="<?= BASE_URL ?>">
+					<form class="navbar-form navbar-right" id="form_login"  method="post" action="<?= BASE_URL ?>">
 						<div class="form-group">
-							<input style="width:100px" type="text" name="username" placeholder="<?=$loc->translate("user_plh")?>" class="form-control">
+							<input style="width:100px" type="text" id="username" name="username" placeholder="<?=$loc->translate("user_plh")?>" class="form-control">
 						</div>
 						<div class="form-group">
-							<input style="width:100px" type="password" name="password" placeholder="<?=$loc->translate("password_plh")?>" class="form-control">
+							<input style="width:100px" type="password" id="password" name="password" placeholder="<?=$loc->translate("password_plh")?>" class="form-control">
 						</div>
-						<button type="submit" name="signin" class="btn btn-success"><?=$loc->translate("signin_btn")?></a></button>
+						<button id="signin" name="signin" class="btn btn-success"><?=$loc->translate("signin_btn")?></a></button>
 						<button type="submit" name="register" class="btn btn-danger"><?=$loc->translate("register_btn")?></a></button>
 					</form>
 
@@ -179,6 +179,48 @@
 </div><!-- /.modal -->
 
 
+<!-- login modal-->
+
+
+<div class="modal fade" id="login_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <form class="form-signin" method="post">
+
+                    <div id="login_error" style="display: none;" class="alert alert-danger">
+                        <h2 class="form-signin-heading"></h2>
+                    </div>
+
+                    <label for="user"><? __('Username') ?></label>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon-user"></i></span>
+                        <input id="username" name="username" type="text" class="form-control" placeholder="jaan" autofocus>
+                    </div>
+
+                    <br/>
+
+                    <label for="pass"><? __('Password') ?></label>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon-key"></i></span>
+                        <input id="password" name="password" type="password" class="form-control" placeholder="******">
+                    </div>
+
+                    <br/>
+
+                    <button class="btn btn-lg btn-primary btn-block" id="signin">Sign in</button>
+                    <button type="submit" name="register" class="btn btn-danger btn-lg btn-block">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--login modal end-->
 
 <!-- Bootstrap core JavaScript
 ================================================== -->

@@ -19,7 +19,7 @@ class Auth
 	 * Verifies if the user is logged in and authenticates if not and POST contains username, else displays the login form
 	 * @return bool Returns true when the user has been logged in
 	 */
-	function require_auth()
+        function require_auth()
 	{
 		global $errors;
 
