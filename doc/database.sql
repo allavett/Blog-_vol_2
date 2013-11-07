@@ -1,19 +1,21 @@
 -- phpMyAdmin SQL Dump
--- version 4.1-dev
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2013 kell 11:08 PM
--- Server version: 5.5.32
--- PHP Version: 5.4.19
+-- Loomise aeg: Nov 08, 2013 kell 12:36 AM
+-- Serveri versioon: 5.5.32
+-- PHP versioon: 5.4.19
 
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `blogvol2`
+-- Andmebaas: `blogvol2`
 --
+CREATE DATABASE IF NOT EXISTS `blogvol2` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `blogvol2`;
 
 -- --------------------------------------------------------
 
@@ -29,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `comment_author` varchar(25) CHARACTER SET latin1 NOT NULL,
   `author_id` int(11) NOT NULL,
   PRIMARY KEY (`comment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=14 ;
 
 --
 -- Andmete tõmmistamine tabelile `comment`
@@ -46,7 +48,8 @@ INSERT INTO `comment` (`comment_id`, `comment_text`, `comment_created`, `comment
 (9, 'wut', '2013-11-07 21:15:22', 'kemo', 2),
 (10, 'wut', '2013-11-07 21:16:11', 'kemo', 2),
 (11, 'wut', '2013-11-07 21:16:35', 'kemo', 2),
-(12, 'wut', '2013-11-07 21:17:06', 'kemo', 2);
+(12, 'wut', '2013-11-07 21:17:06', 'kemo', 2),
+(13, 'qwewqre', '2013-11-07 23:33:16', 'demo', 1);
 
 -- --------------------------------------------------------
 
@@ -126,7 +129,8 @@ INSERT INTO `post_comments` (`post_id`, `comment_id`) VALUES
 (7, 9),
 (7, 10),
 (7, 11),
-(7, 12);
+(7, 12),
+(8, 13);
 
 -- --------------------------------------------------------
 
@@ -398,7 +402,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `avatar`, `deleted`) VALUES
 (1, 'demo', 'demo', '', 'demodemo.png', 0),
-(2, 'kemo', 'kemo', 'kemo@kemo.ee', '', 0);
+(2, 'kemo', 'kemo', 'kemo@kemo.ee', 'Kemo_thumb.jpg', 0);
 
 --
 -- Tõmmistatud tabelite piirangud
@@ -417,4 +421,3 @@ ALTER TABLE `post_comments`
 ADD CONSTRAINT `post_comments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`),
 ADD CONSTRAINT `post_comments_ibfk_2` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`comment_id`);
 SET FOREIGN_KEY_CHECKS=1;
-
