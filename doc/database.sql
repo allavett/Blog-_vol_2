@@ -1,20 +1,19 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 4.1.0-alpha2
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Loomise aeg: Nov 06, 2013 kell 10:27 PM
--- Serveri versioon: 5.5.32
--- PHP versioon: 5.4.19
+-- Generation Time: Nov 07, 2013 kell 02:01 PM
+-- Server version: 5.5.32
+-- PHP Version: 5.4.19
 
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Andmebaas: `blogvol2`
+-- Database: `blogvol2`
 --
-
 
 -- --------------------------------------------------------
 
@@ -29,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `comment_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `comment_author` varchar(25) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`comment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=7 ;
 
 --
 -- Andmete tõmmistamine tabelile `comment`
@@ -38,7 +37,9 @@ CREATE TABLE IF NOT EXISTS `comment` (
 INSERT INTO `comment` (`comment_id`, `comment_text`, `comment_created`, `comment_author`) VALUES
 (2, 'Huvitav', '2013-10-29 10:09:37', 'demo'),
 (3, 'Hahahhahah a', '2013-11-03 18:38:11', 'kemo'),
-(4, 'Hahahhahah a', '2013-11-03 18:41:47', 'kemo');
+(4, 'Hahahhahah a', '2013-11-03 18:41:47', 'kemo'),
+(5, 'test', '2013-11-07 12:32:03', 'demo'),
+(6, 'test', '2013-11-07 12:32:15', 'demo');
 
 -- --------------------------------------------------------
 
@@ -76,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   `user_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`post_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=9 ;
 
 --
 -- Andmete tõmmistamine tabelile `post`
@@ -90,8 +91,7 @@ INSERT INTO `post` (`post_id`, `post_subject`, `post_text`, `post_created`, `use
 (5, 'Test5', 'Postituse tekst 5', '2013-10-26 08:35:59', 1),
 (6, 'Test6', 'Postituse tekst 6', '2013-10-26 08:36:59', 1),
 (7, 'Anekdoot', 'Eesti talumees sõidab reega kodu poole. Mehel ka kaks poega kaasas. Mingil hetkel jookseb jänes üle tee.\r\nMöödub pool tundi ja esimene poeg hüüatab: «Näe, jänes!»\r\nMöödub veel pool tundi ja teine poeg nähvab: «Ei olnud jänes, sa lollpea!»\r\nMöödub järgmine pooltund ning talumees sõnab lepitavalt: «Mis te tulised eesti poisid nüüd selle tühja-tähja pärast tüli kisute.»', '2013-10-27 12:10:49', 1),
-(16, 'See siin on uus postitus', 'See on postituse tekst', '2013-11-03 21:21:38', 31),
-(17, 'See on veel uuem postitus', 'Bbllllbll', '2013-11-03 21:29:39', 31);
+(8, 'Uus postitus', 'Postituse tekst', '2013-11-07 12:57:56', 1);
 
 -- --------------------------------------------------------
 
@@ -137,30 +137,16 @@ INSERT INTO `post_tags` (`post_id`, `tag_id`) VALUES
 (1, 1),
 (5, 1),
 (7, 1),
-(17, 1),
 (2, 2),
 (5, 2),
 (7, 2),
-(17, 2),
 (3, 3),
 (6, 3),
 (7, 3),
 (4, 4),
 (6, 4),
 (7, 4),
-(11, 4),
-(12, 4),
-(13, 4),
-(14, 4),
-(11, 5),
-(12, 5),
-(13, 5),
-(14, 5),
-(11, 6),
-(12, 6),
-(13, 6),
-(14, 6),
-(16, 7);
+(8, 5);
 
 -- --------------------------------------------------------
 
@@ -173,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `tag` (
   `tag_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `tag_name` varchar(25) NOT NULL,
   PRIMARY KEY (`tag_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Andmete tõmmistamine tabelile `tag`
@@ -184,9 +170,7 @@ INSERT INTO `tag` (`tag_id`, `tag_name`) VALUES
 (2, 'Postitus'),
 (3, 'Taggens2'),
 (4, 'Tekst'),
-(5, ' Taggens'),
-(6, ' Uustag'),
-(7, 'Postitus, Taggens');
+(5, 'Silt');
 
 -- --------------------------------------------------------
 
@@ -199,7 +183,7 @@ CREATE TABLE IF NOT EXISTS `terms` (
   `terms_id` int(11) NOT NULL AUTO_INCREMENT,
   `value` varchar(128) COLLATE utf8_estonian_ci DEFAULT NULL,
   PRIMARY KEY (`terms_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=34 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=37 ;
 
 --
 -- Andmete tõmmistamine tabelile `terms`
@@ -232,7 +216,10 @@ INSERT INTO `terms` (`terms_id`, `value`) VALUES
 (30, 'register_password_confirm_txt'),
 (31, 'avatar'),
 (32, 'avatar_dimensions'),
-(33, 'comment_empty');
+(33, 'comment_empty'),
+(34, 'comment_no_text'),
+(35, 'comment_no_auth'),
+(36, 'comment_ok');
 
 -- --------------------------------------------------------
 
@@ -247,7 +234,7 @@ CREATE TABLE IF NOT EXISTS `translations` (
   `terms_id` int(11) NOT NULL,
   `value` varchar(128) COLLATE utf8_estonian_ci DEFAULT NULL,
   PRIMARY KEY (`translation_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=61 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=67 ;
 
 --
 -- Andmete tõmmistamine tabelile `translations`
@@ -264,7 +251,7 @@ INSERT INTO `translations` (`translation_id`, `locale_id`, `terms_id`, `value`) 
 (14, 2, 10, 'Sildid'),
 (15, 1, 11, 'Logout'),
 (16, 2, 11, 'Logi välja'),
-(17, 1, 12, 'Select lang'),
+(17, 1, 12, 'Select language'),
 (18, 2, 12, 'Vali keel'),
 (19, 1, 13, 'Sign in'),
 (20, 2, 13, 'Logi sisse'),
@@ -307,7 +294,13 @@ INSERT INTO `translations` (`translation_id`, `locale_id`, `terms_id`, `value`) 
 (57, 1, 32, 'Avatar max dimensions are 100x100'),
 (58, 2, 32, 'Pildi maksimaalsed mõõtmed on 100x100'),
 (59, 1, 33, 'Your comment is empty!'),
-(60, 2, 33, 'Sinu kommentaar on tühi!');
+(60, 2, 33, 'Sinu kommentaar on tühi!'),
+(61, 1, 34, 'Your comment is empty!'),
+(62, 2, 34, 'Sinu kommentaar on tühi!'),
+(63, 1, 35, 'How the hell did you insert comment without logging in?!'),
+(64, 2, 35, 'Kuidas sul õnnestus lisada kommentaar ilma sisse logimata?!'),
+(65, 1, 36, 'Comment submitted successfully!'),
+(66, 2, 36, 'Kommentaar edukalt lisatud!');
 
 -- --------------------------------------------------------
 
@@ -324,7 +317,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `avatar` varchar(100) NOT NULL,
   `deleted` tinyint(3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Andmete tõmmistamine tabelile `user`
@@ -332,7 +325,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `avatar`, `deleted`) VALUES
 (1, 'demo', 'demo', '', 'demodemo.png', 0),
-(31, 'kemo', 'kemo', 'kemo@kemo.ee', 'kemoKemo_thumb.jpg', 0);
+(2, 'kemo', 'kemo', 'kemo@kemo.ee', '', 0);
 
 --
 -- Tõmmistatud tabelite piirangud
@@ -342,12 +335,12 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `avatar`, `delet
 -- Piirangud tabelile `post`
 --
 ALTER TABLE `post`
-ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
 --
 -- Piirangud tabelile `post_comments`
 --
 ALTER TABLE `post_comments`
-ADD CONSTRAINT `post_comments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`),
-ADD CONSTRAINT `post_comments_ibfk_2` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`comment_id`);
+  ADD CONSTRAINT `post_comments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`),
+  ADD CONSTRAINT `post_comments_ibfk_2` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`comment_id`);
 SET FOREIGN_KEY_CHECKS=1;
