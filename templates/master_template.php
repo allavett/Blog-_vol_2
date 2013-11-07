@@ -55,7 +55,7 @@
                         </li>
 
                         <li class="dropdown" >
-                            <a style="padding-left: 0; padding-right: 0;" href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
+                            <a style="padding-left: 0;" href="#" class="dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><a onclick="Blog.addNewPosting()"><?=$loc->translate("posts_add")?></a></li>
                             </ul>
@@ -110,10 +110,10 @@
 
                 <li class="dropdown"><a href="#" class="dropdown-toggle"
                                         data-toggle="dropdown"><?=$loc->translate("lang_link")?><b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <form method="post" action="<?=BASE_URL?>">
-                            <li><button type="submit" class="btn btn-success" name="language" style="width:100%;" value="2">Eesti</button></li>
-                            <li><button type="submit" class="btn btn-success" name="language" style="width:100%;"value="1">English</button></li>
+                    <ul class="dropdown-menu" style="min-width: 100px !important;">
+                        <form method="post" action="<?=$_SERVER['PHP_SELF']?>">
+                            <li><button type="submit" class="btn btn-info" name="language" style="width:100%; border-radius: 0px !important;" value="2">Eesti</button></li>
+                            <li><button type="submit" class="btn btn-info" name="language" style="width:100%; border-radius: 0px !important;" value="1">English</button></li>
                         </form>
                     </ul>
                 </li>

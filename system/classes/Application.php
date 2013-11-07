@@ -64,7 +64,7 @@ class Application
             exit();
         }else{
             // Check for and process POST ( executes $action_post() )
-            if (isset($_POST) && !empty($_POST)) {
+            if (isset($_POST) && !empty($_POST) && !array_key_exists("language", $_POST)) {
                 $action_name = $controller->action . '_post';
                 $controller->$action_name();
             }
