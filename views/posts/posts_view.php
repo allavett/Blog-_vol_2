@@ -1,3 +1,22 @@
+<style>
+
+    .arc{
+        top: 0;
+        left: 0;
+        width:100px;
+        height:100px;
+        border-radius: 100%;
+        border: 2px solid;
+        border-color: lightskyblue;
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+</style>
+
 <div class="span8">
     <h1><?=$post['post_subject']?></h1>
     <p><?=str_replace("\n",'<br/>',$post['post_text']);?></p>
@@ -31,12 +50,20 @@
 <div>
     <?foreach ($comments as $comment):?>
         <br />
-        <? //   !empty($comment["user"]) $comment["user"]["avatar"]?>
+        <?   // print_r($comment);//!empty($comment["user"]) $comment["user"]["avatar"]?>
 
-        <span class="comment" style="background-color:#afe4ff">
-                                <?=$comment['comment_text']?>
-            <p><?=$loc->translate("comment")?></a><?=$comment['comment_created']?> <?=$loc->translate("comment_by")?></a><?=$comment['comment_author']?></p>
-                        </span>
+        <span class="comment" >
+
+            <? if(!empty($comment["user"])):?>
+            <img class="arc" src="<?=BASE_URL."upload/".$comment["user"]["avatar"]?>" alt="<?=$comment["comment_author"]?>">
+              <?endif?>
+            <div style="background-color: #afe4ff; display:inline; margin-left: -5px;"><?=$comment['comment_text']?></div>
+            <p>
+
+               <?=$loc->translate("comment")?></a><?=$comment['comment_created']?> <?=$loc->translate("comment_by")?></a><?=$comment['comment_author']?>
+            </p>
+
+        </span>
     <?endforeach?>
 </div>
 
