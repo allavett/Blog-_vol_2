@@ -120,13 +120,7 @@ CREATE TABLE IF NOT EXISTS `post_comments` (
 
 INSERT INTO `post_comments` (`post_id`, `comment_id`) VALUES
 (7, 3),
-(7, 4),
-(8, 7),
-(8, 8),
-(7, 9),
-(7, 10),
-(7, 11),
-(7, 12);
+(7, 4);
 
 -- --------------------------------------------------------
 
@@ -196,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `terms` (
   `terms_id` int(11) NOT NULL AUTO_INCREMENT,
   `value` varchar(128) COLLATE utf8_estonian_ci DEFAULT NULL,
   PRIMARY KEY (`terms_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=44 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=57 ;
 
 --
 -- Andmete tõmmistamine tabelile `terms`
@@ -239,7 +233,20 @@ INSERT INTO `terms` (`terms_id`, `value`) VALUES
 (40, 'new_post_tags'),
 (41, 'new_post_close'),
 (42, 'new_post_save'),
-(43, 'new_post_tags_txt');
+(43, 'new_post_tags_txt'),
+(44, 'register_user_taken'),
+(45, 'register_invalid_signs'),
+(46, 'register_avatar_toobig'),
+(47, 'register_avatar_file'),
+(48, 'register_pass_nomatch'),
+(49, 'register_pass_tooshort'),
+(50, 'register_mail_invalid'),
+(51, 'register_all_fields'),
+(52, 'login_fail'),
+(53, 'login_please'),
+(54, 'login_user'),
+(55, 'login_pass'),
+(56, 'login_fields');
 
 -- --------------------------------------------------------
 
@@ -254,7 +261,7 @@ CREATE TABLE IF NOT EXISTS `translations` (
   `terms_id` int(11) NOT NULL,
   `value` varchar(128) COLLATE utf8_estonian_ci DEFAULT NULL,
   PRIMARY KEY (`translation_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=81 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci AUTO_INCREMENT=107 ;
 
 --
 -- Andmete tõmmistamine tabelile `translations`
@@ -299,12 +306,12 @@ INSERT INTO `translations` (`translation_id`, `locale_id`, `terms_id`, `value`) 
 (42, 2, 24, 'Registreerimine'),
 (43, 1, 25, 'Username can contain any letters or numbers, without spaces'),
 (44, 2, 25, 'Kasutajanimes tohib kasutada ainult tähti ja numbreid ilma tühikuteta'),
-(45, 1, 26, 'Please provide your E-mail'),
+(45, 1, 26, 'Please provide your E-mail address'),
 (46, 2, 26, 'Palun sisesta oma E-maili aadress'),
 (47, 1, 27, 'Password'),
 (48, 2, 27, 'Parool'),
-(49, 1, 28, 'Password should be at least 4 characters'),
-(50, 2, 28, 'Parool peaks olema vähemalt 4 tähemärki'),
+(49, 1, 28, 'Password should be at least 4 characters long'),
+(50, 2, 28, 'Parool peaks olema vähemalt 4 tähemärki pikk'),
 (51, 1, 29, 'Password (Confirm)'),
 (52, 2, 29, 'Parool (Kinnitus)'),
 (53, 1, 30, 'Please confirm password'),
@@ -334,7 +341,33 @@ INSERT INTO `translations` (`translation_id`, `locale_id`, `terms_id`, `value`) 
 (77, 1, 42, 'Save post'),
 (78, 2, 42, 'Salvesta'),
 (79, 1, 43, 'Example: weather; news; beer'),
-(80, 2, 43, 'Näidiseks: ilm, uudised, õlu');
+(80, 2, 43, 'Näidiseks: ilm, uudised, õlu'),
+(81, 1, 44, 'Username already taken!'),
+(82, 2, 44, 'Selline kasutaja juba olemas!'),
+(83, 1, 45, 'Username can contain only letters and numbers!'),
+(84, 2, 45, 'Kasutajanimi võib sisaldada ainult tähti ja numbreid!'),
+(85, 1, 46, 'Image dimensions too big!'),
+(86, 2, 46, 'Pildi mõõtmed liiga suured!'),
+(87, 1, 47, 'Check your image file!'),
+(88, 2, 47, 'Kontrolli enda pildi faili!'),
+(89, 1, 48, 'Password does not match!'),
+(90, 2, 48, 'Paroolid ei klapi!'),
+(91, 1, 49, 'Password is too short!'),
+(92, 2, 49, 'Paroolid on liiga lühike!'),
+(93, 1, 50, 'Not a valid email address!'),
+(94, 2, 50, 'See ei ole õige meili aadress!'),
+(95, 1, 51, 'All fields, except avatar, must be filled!'),
+(96, 2, 51, 'Kõik väljad, väljaarvatud avatar, peavad olema täidetud!'),
+(97, 1, 52, 'Wrong username or password!'),
+(98, 2, 52, 'Vale kasutajanimi või parool!'),
+(99, 1, 53, 'Please sign in'),
+(100, 2, 53, 'Palun logi sisse'),
+(101, 1, 54, 'Username'),
+(102, 2, 54, 'Kasutajanimi'),
+(103, 1, 55, 'Password'),
+(104, 2, 55, 'Parool'),
+(105, 1, 56, 'Both fields must be filled!'),
+(106, 2, 56, 'Mõlemad väljad peavad olema täidetud!');
 
 -- --------------------------------------------------------
 
@@ -369,13 +402,11 @@ INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `avatar`, `delet
 -- Piirangud tabelile `post`
 --
 ALTER TABLE `post`
-ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
 --
 -- Piirangud tabelile `post_comments`
 --
 ALTER TABLE `post_comments`
-ADD CONSTRAINT `post_comments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`),
-ADD CONSTRAINT `post_comments_ibfk_2` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`comment_id`);
-SET FOREIGN_KEY_CHECKS=1;
-
+  ADD CONSTRAINT `post_comments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`),
+  ADD CONSTRAINT `post_comments_ibfk_2` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`comment_id`);

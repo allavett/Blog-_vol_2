@@ -194,7 +194,7 @@
                         <h2 class="form-signin-heading"></h2>
                     </div>
 
-                    <label for="user"><? __('Username') ?></label>
+                    <label for="user"><?=$loc->translate("login_user")?></label>
 
                     <div class="input-group">
                         <span class="input-group-addon"><i class="icon-user"></i></span>
@@ -203,7 +203,7 @@
 
                     <br/>
 
-                    <label for="pass"><? __('Password') ?></label>
+                    <label for="pass"><?=$loc->translate("login_pass")?></label>
 
                     <div class="input-group">
                         <span class="input-group-addon"><i class="icon-key"></i></span>
@@ -212,8 +212,8 @@
 
                     <br/>
 
-                    <button class="btn btn-lg btn-primary btn-block" id="signin">Sign in</button>
-                    <button type="submit" name="register" class="btn btn-danger btn-lg btn-block">Register</button>
+                    <button class="btn btn-lg btn-primary btn-block" id="signin"><?=$loc->translate("signin_btn")?></button>
+                    <button type="submit" name="register" class="btn btn-danger btn-lg btn-block"><?=$loc->translate("register_btn")?></button>
                 </form>
             </div>
         </div>

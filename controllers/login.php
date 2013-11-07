@@ -21,7 +21,7 @@ class login extends Controller {
                 $_SESSION['username'] = $user['username'];
                 exit(true);
             } else {
-                exit("Vale kasutajanimi või parool");
+                exit($this->loc->translate("login_fail"));
             }
         }
 
