@@ -7,6 +7,7 @@
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -419,3 +420,4 @@ ALTER TABLE `post`
 ALTER TABLE `post_comments`
   ADD CONSTRAINT `post_comments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`),
   ADD CONSTRAINT `post_comments_ibfk_2` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`comment_id`);
+SET FOREIGN_KEY_CHECKS=1;
