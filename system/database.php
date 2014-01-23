@@ -1,10 +1,20 @@
 <?php
 /**
+ * @file
  * Database functions
- * Not included in class to shorten typing effort.
+ *
+ * - Not included in class to shorten typing effort.
+ *
+ * @version 1.0
+ * @author Henno Täht <henno.taht@khk.ee>, Kaupo Juhkam <kaupo.juhkam@khk.ee> Tarmo Teekivi <tarmo.teekivi@khk.ee>,
  */
-
 connect_db();
+/**
+ * Function for connecting with database
+ * - Sets NAMES utf8
+ * - Sets CHARACTER utf8
+ * @global mysqli $db Database connection
+ */
 function connect_db()
 {
 	global $db;
@@ -12,9 +22,15 @@ function connect_db()
 	mysqli_select_db($db, DATABASE_DATABASE) or db_error_out();
 	mysqli_query($db, "SET NAMES utf8");
 	mysqli_query($db, "SET CHARACTER utf8");
-
 }
-
+/**
+ * Function for run query
+ * @global mysqli $db Used for database connection
+ * @param String $sql Full query clause
+ * @param Boolean $query_pointer
+ * @param Boolean $debug If true, show $sql value
+ * @return integer - Number of affected rows
+ */
 function q($sql, & $query_pointer = NULL, $debug = FALSE)
 {
 	global $db;
@@ -34,7 +50,13 @@ function q($sql, & $query_pointer = NULL, $debug = FALSE)
 			return mysqli_affected_rows($db);
 	}
 }
-
+/**
+ * Function to get one result for query
+ * @global mysqli $db Used for database connection
+ * @param String $sql Full query clause
+ * @param Boolean $debug If true, show $sql value
+ * @return array of row values
+ */
 function get_one($sql, $debug = FALSE)
 {
 	global $db;
@@ -50,7 +72,12 @@ function get_one($sql, $debug = FALSE)
 			exit('get_one("' . $sql . '") failed because get_one expects SELECT statement.');
 	}
 }
-
+/**
+ * Function to get all results for query
+ * @global mysqli $db Used for database connection
+ * @param string $sql Full query clause
+ * @return array of rows
+ */
 function get_all($sql)
 {
 	global $db;
@@ -61,6 +88,12 @@ function get_all($sql)
 	return $result;
 }
 
+/**
+ * Function to get first result for query
+ * @global mysqli $db Used for database connection
+ * @param String $sql Full query clause
+ * @return array values of first row
+ */
 function get_first($sql)
 {
 	global $db;
@@ -69,6 +102,11 @@ function get_first($sql)
 	return empty($first_row) ? array() : $first_row;
 }
 
+/**
+ * Function to show database error in errortemplate
+ * @global mysqli $db Used for database connection
+ * @param String $sql Full query clause
+ */
 function db_error_out($sql = NULL)
 {
 	global $db;
@@ -76,7 +114,6 @@ function db_error_out($sql = NULL)
 
 	if (strpos($db_error, 'You have an error in SQL syntax') !== FALSE) {
 		$db_error = '<b>Syntax error in</b><pre> ' . substr($db_error, 135) . '</pre>';
-
 	}
 	$backtrace = debug_backtrace();
 	$file = $backtrace[1]['file'];
@@ -98,7 +135,6 @@ function db_error_out($sql = NULL)
 	if (!empty($function)) {
 		$s .= ", function <b>$function</b>( $args )";
 	}
-
 	// Display <pre>SQL QUERY</pre> only if it is set
 	$sql = isset($sql) ? '<pre style="text-align: left;">' . $sql . '</pre><br/>' : '';
 
@@ -114,11 +150,11 @@ function db_error_out($sql = NULL)
 	die();
 
 }
-
 /**
+ * Function to insert new data into database
  * @param $table string The name of the table to be inserted into.
  * @param $data array Array of data. For example: array('field1' => 'mystring', 'field2' => 3);
- * @return bool|int Returns the ID of the inserted row or FALSE when fails.
+ * @return Boolean||integer - Returns the ID of the inserted row or FALSE when fails.
  */
 function insert($table, $data)
 {
@@ -133,7 +169,14 @@ function insert($table, $data)
 		return FALSE;
 	}
 }
-
+/**
+ * Function to update $table by array of $data by $where clause
+ * @global mysqli $db Used for database connection
+ * @param String $table Updates selected table
+ * @param array $data Array of values to update. For example: array('field1' => 'mystring', 'field2' => 3);
+ * @param String $where Value of where clause to update
+ * @return Boolean - If update affects rows more than 0 then true.
+ */
 function update($table, array $data, $where)
 {
 	global $db;
@@ -151,7 +194,12 @@ function update($table, array $data, $where)
 		return FALSE;
 	}
 }
-
+/**
+ * Function used for correcting insert or update query data array
+ * @global mysqli $db Used for database connection
+ * @param array $data
+ * @return array of corrected values
+ */
 function escape(array $data)
 {
 	global $db;

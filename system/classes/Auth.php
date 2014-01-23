@@ -1,7 +1,12 @@
 <?php
 /**
- * Class auth authenticates user and permits to check if the user has been logged in
- * Automatically loaded when the controller has $requires_auth property.
+ * Authentication
+ *
+ * - Class auth authenticates user and permits to check if the user has been logged in.
+ * - Class is automatically loaded when the controller has $requires_auth property.
+ *
+ * @version 1.0
+ * @author Henno Täht <henno.taht@khk.ee>
  */
 class Auth
 {
@@ -16,10 +21,12 @@ class Auth
 	}
 
 	/**
-	 * Verifies if the user is logged in and authenticates if not and POST contains username, else displays the login form
-	 * @return bool Returns true when the user has been logged in
+	 * Function to verify authentication
+	 * - Verifies if the user is logged in and authenticated.
+	 * - If not and POST contains username, else displays the login form.
+	 * @return Boolean - Returns true when the user has been logged in
 	 */
-        function require_auth()
+	function require_auth()
 	{
 		global $errors;
 
@@ -49,7 +56,10 @@ class Auth
 		// Prevent loading the requested controller (not authenticated)
 		exit();
 	}
-
+	/**
+	 * Function to redirect
+	 * @param String $page Page name to redirect
+	 */
 	function redirect($page){
 		header("location: ". BASE_URL . $page);
 		exit();

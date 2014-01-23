@@ -1,14 +1,18 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: hennotaht
- * Date: 7/29/13
- * Time: 21:48
+ * Controls user logout
+ *
+ * @version 1.0
+ * @author Henno Täht <henno.taht@khk.ee>
  */
-
 class logout extends Controller {
-	function index(){
+	/**
+	 * Logout index function
+	 *
+	 * - Will destroy session and redirect to main page.
+	 */
+	function index() {
 		session_destroy();
-		header('Location: '.BASE_URL);
+		header('Location: ' . BASE_URL);
 	}
-} 
+}

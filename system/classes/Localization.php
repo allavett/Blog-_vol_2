@@ -1,15 +1,20 @@
 <?php
-
+/**
+ * Localization for translation
+ *
+ * @version 1.0
+ * @author Kemo Oolep <kemo.oolep@khk.ee>
+ */
 class Localization
 {
 
-    public $translations = array();
+	public $translations = array();
 
-    public $locale = 2;
+	public $locale = 2;
 
-    public function getTranslations()
-    {
-        $translationQuery = get_all("
+	public function getTranslations()
+	{
+		$translationQuery = get_all("
 SELECT terms_value as token,MAX(translation_value) value
     FROM
      (
@@ -25,18 +30,18 @@ SELECT terms_value as token,MAX(translation_value) value
      ");
 
 
-        foreach ($translationQuery as $translation) {
-            $this->translations[$translation["token"]] = $translation["value"];
-        }
-    }
+		foreach ($translationQuery as $translation) {
+			$this->translations[$translation["token"]] = $translation["value"];
+		}
+	}
 
-    public function translate($token){
-        if(array_key_exists($token, $this->translations)){
-            return $this->translations[$token];
-        }else{
-            return $token;
-        }
-    }
+	public function translate($token){
+		if(array_key_exists($token, $this->translations)){
+			return $this->translations[$token];
+		}else{
+			return $token;
+		}
+	}
 
 
 }

@@ -1,7 +1,16 @@
-<?
+<?php
 /**
- * Display a fancy error page and quit.
- * @param $error_file_name_or_msg string The view file of the specific error (in views/errors folder, without _error_view.php suffix)
+ * @file
+ * Functions
+ *
+ * - Not included in class to shorten typing effort.
+ *
+ * @version 1.0
+ * @author Henno Täht <henno.taht@khk.ee>, Kaupo Juhkam <kaupo.juhkam@khk.ee>
+ */
+/**
+ * Function to display a fancy error page and quit
+ * @param String $error_file_name_or_msg The view file of the specific error (in views/errors folder, without _error_view.php suffix)
  */
 function error_out($error_file_name_or_msg)
 {
@@ -11,7 +20,10 @@ function error_out($error_file_name_or_msg)
 	require('templates/error_template.php');
 	exit();
 }
-
+/**
+ * Function to autoload classes
+ * @param String @className Class name that will be autoloaded
+ */
 function __autoload($className)
 {
 	(include 'system/classes/' . $className . '.php') or
@@ -21,15 +33,19 @@ function __autoload($className)
 }
 
 /**
- * @param $text string Text to translate
- * @return string
+ * Function for translation
+ * @param String $text Text to translate
+ * @return String - Translation
  */
 function __($text)
 {
 	//TODO: Write your own translation code here
 	echo $text;
 }
-
+/**
+ * Function for debugging
+ * @param String $msg Debug message
+ */
 function debug($msg)
 {
 	if (!DEBUG) return false;
@@ -39,12 +55,13 @@ function debug($msg)
 	echo "[" . $file . ":" . $line . "] <b>" . $msg . "</b>";
 }
 
-/*
+/**
  * Resizes a picture to a maximum (applies to both height and width)
- * input: $path_to_image – a fully qualified path to the image
- * ex: /myfolders/imagefolders/image_name.jpg
- * $target: maximum picture height or width in pixels
- * returns: image width and height string ready to be used in an HTML tag
+ * @param String $path_to_image A fully qualified path to the image
+ * @param integer $target Maximum picture height or width in pixels
+ * @return String - Image width and height string ready to be used in an HTML tag
+ * @version 1.0
+ * @author Allar Vendla <allar.vendla@khk.ee>
  */
 function image_resize($path_to_image, $target) {
 	//get image dimensions
@@ -67,4 +84,4 @@ function image_resize($path_to_image, $target) {
 	$height = round($height * $ratio);
 	//return the resized image dimensions in html image tag format
 	return 'width="'.$width.'" height="'.$height.'"/';
- }
+}
