@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2013 kell 12:46 AM
+-- Generation Time: Jaan 27, 2014 kell 01:10 PM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -313,22 +313,22 @@ INSERT INTO `translations` (`translation_id`, `locale_id`, `terms_id`, `value`) 
 (40, 2, 23, 'Kasutajanimi'),
 (41, 1, 24, 'Register'),
 (42, 2, 24, 'Registreerimine'),
-(43, 1, 25, 'Username can contain any letters or numbers, without spaces'),
-(44, 2, 25, 'Kasutajanimes tohib kasutada ainult tähti ja numbreid ilma tühikuteta'),
+(43, 1, 25, 'Username must contain atleast 4 letters'),
+(44, 2, 25, 'Kasutajanimes peab olema vähemalt 4 tähte'),
 (45, 1, 26, 'Please provide your E-mail address'),
 (46, 2, 26, 'Palun sisesta oma E-maili aadress'),
 (47, 1, 27, 'Password'),
 (48, 2, 27, 'Parool'),
-(49, 1, 28, 'Password should be at least 4 characters long'),
-(50, 2, 28, 'Parool peaks olema vähemalt 4 tähemärki pikk'),
+(49, 1, 28, 'Password should be at least 6 characters long'),
+(50, 2, 28, 'Parool peaks olema vähemalt 6 tähemärki pikk'),
 (51, 1, 29, 'Password (Confirm)'),
 (52, 2, 29, 'Parool (Kinnitus)'),
 (53, 1, 30, 'Please confirm password'),
 (54, 2, 30, 'Palun kinnita parool'),
 (55, 1, 31, 'Avatar'),
 (56, 2, 31, 'Pilt'),
-(57, 1, 32, 'Avatar max dimensions are 100x100'),
-(58, 2, 32, 'Pildi maksimaalsed mõõtmed on 100x100'),
+(57, 1, 32, 'Avatars maximum size is 300kb'),
+(58, 2, 32, 'Pildi maksimaalne suurus on 300kb'),
 (59, 1, 33, 'Your comment is empty!'),
 (60, 2, 33, 'Sinu kommentaar on tühi!'),
 (61, 1, 34, 'Your comment is empty!'),
@@ -393,7 +393,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `avatar` varchar(100) NOT NULL,
   `deleted` tinyint(3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Andmete tõmmistamine tabelile `user`
@@ -402,7 +402,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `avatar`, `deleted`) VALUES
 (1, 'demo', 'demo', '', 'demodemo.png', 0),
 (2, 'kemo', 'kemo', 'kemo@kemo.ee', 'Kemo_thumb.jpg', 0),
-(3, 'allar', 'allar', 'allar@allar.ee', 'allarpilt.jpg', 0);
+(3, 'allar', 'allar', 'allar@allar.ee', 'allarpilt.jpg', 0),
+(4, 'test2', 'test2', 'test2@test.ee', '', 0);
 
 --
 -- Tõmmistatud tabelite piirangud
